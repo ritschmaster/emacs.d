@@ -8,7 +8,7 @@
   (save-some-buffers t)
 
   ; additional cleaning:
-  (kill-process "*OfflineIMAP*")
+  (offlineimap-kill 9)
 
   (kill-emacs))
 
