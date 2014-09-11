@@ -84,6 +84,7 @@
 (require 'init-sql)
 (require 'init-java)
 (require 'init-cmake)
+(require 'init-perl)
 
 (require 'init-paredit)
 (require 'init-lisp)
@@ -158,3 +159,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+(put 'dired-find-alternate-file 'disabled nil)
