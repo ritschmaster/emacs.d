@@ -19,10 +19,18 @@ config adds improved defaults and extended support for the following:
 * Haskell
 * Erlang
 * Common Lisp (with Slime)
+* Perl
+* Bash
 
 In particular, there's a nice config for *tab autocompletion*, and
 flycheck is used to immediately highlight syntax errors in Ruby, HAML,
 Python, Javascript, PHP and a number of other languages.
+
+## Features
+
+* Mail
+** A full GNUS setup, easy to use (look at ~/.gnus after make install)
+** A simple OfflineIMAP configuration (look at ~/.offlineimaprc and ~/.offineimap.py after make install)
 
 ## Requirements
 
@@ -41,8 +49,24 @@ To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 
 ``` git clone https://github.com/purcell/emacs.d.git ~/.emacs.d ```
 
+Then change into it and do:
+``` make
+make install ```
+
 Upon starting up Emacs for the first time, further third-party
 packages will be automatically downloaded and installed.
+
+## Uninstallation
+
+To uninstall things that have been installed with this Repository and
+are specific for Emacs:
+
+``` make uninstall ```
+
+To uninstall everything that have been installed with this Repository
+and are specific for Emacs:
+
+``` make uninstall-all ```
 
 ## Important note about `ido`
 

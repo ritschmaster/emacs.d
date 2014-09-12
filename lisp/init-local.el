@@ -66,10 +66,6 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
-;; games
-(setq tetris-score-file "~/.emacs.d/scores/tetris")
-(setq snake-score-file "~/.emacs.d/scores/snake")
-
 
 ;;; other packages in this kit:
 ;; 2048

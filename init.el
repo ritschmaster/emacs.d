@@ -107,8 +107,9 @@
 (require 'init-erc)
 (load-file "~/.gnus")
 
-;; Extra packages which don't require any configuration
+(require 'init-games)
 
+;; Extra packages which don't require any configuration
 (require-package 'gnuplot)
 (require-package 'lua-mode)
 (require-package 'htmlize)
