@@ -29,8 +29,8 @@ Python, Javascript, PHP and a number of other languages.
 ## Features
 
 * Mail
-** A full GNUS setup, easy to use (look at ~/.gnus after make install)
-** A simple OfflineIMAP configuration (look at ~/.offlineimaprc and ~/.offineimap.py after make install)
+ * A full gnus setup, easy to use (look at ~/.gnus after make install)
+ * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and ~/.offineimap.py after make install)
 
 ## Requirements
 
@@ -50,8 +50,10 @@ To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 ``` git clone https://github.com/purcell/emacs.d.git ~/.emacs.d ```
 
 Then change into it and do:
-``` make
-make install ```
+```bash
+make
+make install
+```
 
 Upon starting up Emacs for the first time, further third-party
 packages will be automatically downloaded and installed.
@@ -61,12 +63,16 @@ packages will be automatically downloaded and installed.
 To uninstall things that have been installed with this Repository and
 are specific for Emacs:
 
-``` make uninstall ```
+```bash
+make uninstall
+```
 
 To uninstall everything that have been installed with this Repository
 and are specific for Emacs:
 
-``` make uninstall-all ```
+```bash
+make uninstall-all
+```
 
 ## Important note about `ido`
 

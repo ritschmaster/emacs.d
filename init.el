@@ -107,6 +107,8 @@
 (require 'init-erc)
 (load-file "~/.gnus")
 
+;; Entertainment packages
+(require 'init-emms)
 (require 'init-games)
 
 ;; Extra packages which don't require any configuration
@@ -152,6 +154,11 @@
           (lambda ()
             (message "init completed in %.2fms"
                      (sanityinc/time-subtract-millis after-init-time before-init-time))))
+
+;;----------------------------------------------------------------------------
+;; Set all key strokes for all modes
+;;----------------------------------------------------------------------------
+(require 'init-keys)
 
 
 (provide 'init)

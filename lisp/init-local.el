@@ -68,54 +68,53 @@
 
 
 ;;; other packages in this kit:
-;; 2048
-;(load-file "~/.emacs.d/packages/emacs-2048/2048.el")
+
 
 ;;; other configuration
-;; semantic set up
-(require 'semantic/ia)
-(require 'semantic/bovine/c)
-(semantic-mode 1)
-(setq-mode-local c-mode semanticdb-find-default-throttle
-                      '(project local unloaded system recursive))
-(setq-mode-local c++-mode semanticdb-find-default-throttle
-                      '(project local unloaded system recursive))
+;; ;; semantic set up
+;; (require 'semantic/ia)
+;; (require 'semantic/bovine/c)
+;; (semantic-mode 1)
+;; (setq-mode-local c-mode semanticdb-find-default-throttle
+;;                       '(project local unloaded system recursive))
+;; (setq-mode-local c++-mode semanticdb-find-default-throttle
+;;                       '(project local unloaded system recursive))
 
-; semantic autocomplete integration
-(add-to-list 'ac-sources 'ac-source-semantic)
+;; ; semantic autocomplete integration
+;; (add-to-list 'ac-sources 'ac-source-semantic)
 
-; enable some modes
-(add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
+;; ; enable some modes
+;; (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
 
-;  semantic uses gnu
-(semanticdb-enable-gnu-global-databases 'c-mode t)
-(semanticdb-enable-gnu-global-databases 'c++-mode t)
+;; ;  semantic uses gnu
+;; (semanticdb-enable-gnu-global-databases 'c-mode t)
+;; (semanticdb-enable-gnu-global-databases 'c++-mode t)
 
-; add Qt to c++-mode
-(defvar qt-base-dir "/usr/include")
-(if (file-readable-p qt-base-dir)
-    (progn
-      (semantic-add-system-include qt-base-dir 'c++-mode)
-      (semantic-add-system-include (concat qt-base-dir "/Qt") 'c++-mode)
-      (semantic-add-system-include (concat qt-base-dir "/QtGui") 'c++-mode)
-      (semantic-add-system-include (concat qt-base-dir "/QtCore") 'c++-mode)
-      (semantic-add-system-include (concat qt-base-dir "/QtTest") 'c++-mode)
-      (semantic-add-system-include (concat qt-base-dir "/QtNetwork") 'c++-mode)
-      (semantic-add-system-include (concat qt-base-dir "/QtSvg") 'c++-mode)
-      (add-to-list 'auto-mode-alist (cons qt-base-dir 'c++-mode))
-      (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt-base-dir "/Qt/qconfig.h"))
-      (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt-base-dir "/Qt/qconfig-large.h"))
-      (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt-base-dir "/Qt/qglobal.h"))))
+;; ; add Qt to c++-mode
+;; (defvar qt-base-dir "/usr/include")
+;; (if (file-readable-p qt-base-dir)
+;;     (progn
+;;       (semantic-add-system-include qt-base-dir 'c++-mode)
+;;       (semantic-add-system-include (concat qt-base-dir "/Qt") 'c++-mode)
+;;       (semantic-add-system-include (concat qt-base-dir "/QtGui") 'c++-mode)
+;;       (semantic-add-system-include (concat qt-base-dir "/QtCore") 'c++-mode)
+;;       (semantic-add-system-include (concat qt-base-dir "/QtTest") 'c++-mode)
+;;       (semantic-add-system-include (concat qt-base-dir "/QtNetwork") 'c++-mode)
+;;       (semantic-add-system-include (concat qt-base-dir "/QtSvg") 'c++-mode)
+;;       (add-to-list 'auto-mode-alist (cons qt-base-dir 'c++-mode))
+;;       (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt-base-dir "/Qt/qconfig.h"))
+;;       (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt-base-dir "/Qt/qconfig-large.h"))
+;;       (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt-base-dir "/Qt/qglobal.h"))))
 
-; add Boost to c++-mode
-(defvar boost-base-dir "/usr/include/boost")
-(if (file-readable-p boost-base-dir)
-    (progn
-      (semantic-add-system-include boost-base-dir 'c++-mode)
-      (add-to-list 'auto-mode-alist (cons boost-base-dir 'c++-mode))
-      (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat boost-base-dir "/config.hpp"))))
+;; ; add Boost to c++-mode
+;; (defvar boost-base-dir "/usr/include/boost")
+;; (if (file-readable-p boost-base-dir)
+;;     (progn
+;;       (semantic-add-system-include boost-base-dir 'c++-mode)
+;;       (add-to-list 'auto-mode-alist (cons boost-base-dir 'c++-mode))
+;;       (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat boost-base-dir "/config.hpp"))))
 
 (provide 'init-local)
