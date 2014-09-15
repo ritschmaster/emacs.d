@@ -3,12 +3,6 @@
 ;; ede
 (global-ede-mode)
 
-;; c-mode & c++-mode
-(add-hook 'c-mode-hook (lambda ()
-                         (local-set-key (kbd "<f8>") 'ff-get-other-file)))
-(add-hook 'c++-mode-hook (lambda ()
-                           (local-set-key (kbd "<f8>") 'ff-get-other-file)))
-
 ;; ac-c-headers
 (require-package 'ac-c-headers)
 (require 'ac-c-headers)
@@ -22,16 +16,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
-
-;; undo-tree
-(global-set-key (kbd "<f9>") 'undo-tree-undo)
-(global-set-key (kbd "<f10>") 'undo-tree-redo)
-
-;; comments
-(global-set-key (kbd "<f11>") 'comment-or-uncomment-region)
-
-;; compile
-(global-set-key (kbd "<f5>") 'recompile)
 
 ;; w3m
 (require-package 'w3m)

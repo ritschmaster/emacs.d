@@ -15,9 +15,10 @@
 
 (add-auto-mode 'conf-mode "Procfile")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------------------------
 ;; Some great functions for finding the matching parenthesis
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------------------------
 (defun goto-match-paren (arg)
   "Go to the matching if on (){}[], similar to vi style of % "
   (interactive "p")
@@ -55,12 +56,28 @@
 
 (global-set-key "\M--" 'dispatch-goto-matching)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------------------------
 ;; linum mode for all programming modes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------------------------
 (require-package 'linum)
 (require 'linum)
 (add-hook 'prog-mode-hook 'linum-mode)
+
+
+;;----------------------------------------------------------------------------
+;; Let the compilation window split to the bottom
+;;----------------------------------------------------------------------------
+(defun my-compilation-hook ()
+  (when (not (get-buffer-window "*compilation*"))
+    (save-selected-window
+      (save-excursion
+        (let* ((w (split-window-vertically))
+               (h (window-height w)))
+          (select-window w)
+          (switch-to-buffer "*compilation*")
+          (shrink-window (- h 8)))))))
+(add-hook 'compilation-mode-hook 'my-compilation-hook)
+
 
 
 (provide 'init-misc)

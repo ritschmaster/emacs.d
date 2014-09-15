@@ -11,7 +11,7 @@
       emms-source-file-default-directory "~/Music")
 
 (setq emms-score-enabled-p t
-      ;; emms-browser-default-browse-type 'info-album
+      emms-browser-default-browse-type 'info-album
       emms-stream-default-action "play")
 
 (emms-mode-line-enable)

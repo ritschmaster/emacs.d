@@ -67,8 +67,7 @@ are specific for Emacs:
 make uninstall
 ```
 
-To uninstall everything that have been installed with this Repository
-and are specific for Emacs:
+To uninstall everything that have been installed with this Repository:
 
 ```bash
 make uninstall-all

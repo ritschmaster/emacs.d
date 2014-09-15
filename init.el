@@ -85,6 +85,7 @@
 (require 'init-java)
 (require 'init-cmake)
 (require 'init-perl)
+(require 'init-scheme)
 
 (require 'init-paredit)
 (require 'init-lisp)
