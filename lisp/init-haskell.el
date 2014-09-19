@@ -1,4 +1,8 @@
 (require-package 'haskell-mode)
+(when (> emacs-major-version 23)
+  (require-package 'hayoo))
+
+(add-to-list 'completion-ignored-extensions ".hi")
 
 ;;; Flycheck specifics
 (when (> emacs-major-version 23)
@@ -34,7 +38,7 @@ been saved."
 
 (add-hook 'haskell-interactive-mode-hook 'sanityinc/no-trailing-whitespace)
 
-(after-load 'haskell-interactive-mode
+(after-load 'haskell-process
   (diminish 'interactive-haskell-mode " IntHS"))
 
 (add-auto-mode 'haskell-mode "\\.ghci\\'")

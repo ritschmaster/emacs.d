@@ -93,7 +93,7 @@
 
 
 (require-package 'highlight-symbol)
-(dolist (hook '(prog-mode-hook html-mode-hook))
+(dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
   (add-hook hook 'highlight-symbol-mode)
   (add-hook hook 'highlight-symbol-nav-mode))
 (eval-after-load 'highlight-symbol
@@ -104,6 +104,11 @@
 ;;----------------------------------------------------------------------------
 (autoload 'zap-up-to-char "misc" "Kill up to, but not including ARGth occurrence of CHAR.")
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
+
+
+
+(require-package 'browse-kill-ring)
+
 
 ;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands
@@ -240,7 +245,24 @@
 (global-set-key [M-S-up] 'md/move-lines-up)
 (global-set-key [M-S-down] 'md/move-lines-down)
 
+;; Temporary patch pending https://github.com/wyuenho/move-dup/pull/4
+(after-load 'move-dup
+  (defun md/move-line (&optional n)
+    "Interactive function to move the current line N line.
+
+If the prefix N is positive, this function moves the current line
+forward N lines; otherwise backward."
+    (interactive "*p")
+    (let ((col (current-column)))
+      (goto-char (save-excursion
+                   (push-mark)
+                   (end-of-line)
+                   (md/move-region n)
+                   (region-beginning)))
+      (move-to-column col))))
+
 (global-set-key (kbd "C-c p") 'md/duplicate-down)
+(global-set-key (kbd "C-c P") 'md/duplicate-up)
 
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
