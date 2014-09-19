@@ -1,0 +1,85 @@
+#! /usr/bin/env bash
+
+function emms-pause
+{
+    emacsclient -e "(emms-pause)"
+}
+
+function emms-next
+{
+    emacsclient -e "(emms-next)"
+}
+
+function emms-prev
+{
+    emacsclient -e "(emms-previous)"
+}
+
+function emms-start
+{
+    emacsclient -e "(emms-start)"
+}
+
+function emms-stop
+{
+    emacsclient -e "(emms-stop)"
+}
+
+function emms-play-playlist
+{
+    playlistFile=$1
+    emacsclient -e "(emms-play-playlist \"$1\")"
+}
+
+function emms-random
+{
+    emacsclient -e "(emms-random)"
+}
+
+case "$1" in
+    --toggle-pause )
+        emms-pause
+        ;;
+
+    --next )
+        emms-next
+        ;;
+
+    --prev )
+        emms-prev
+        ;;
+
+    --start )
+        emms-start
+        ;;
+
+    --stop )
+        emms-stop
+        ;;
+
+    --playlist )
+        emms-play-playlist "$2"
+        ;;
+
+    --random )
+        emms-random
+        ;;
+
+    --query )
+        emacsclient -e "(emms-track-description (emms-playlist-current-selected-track))" \
+            | sed s/\"//g
+        ;;
+
+    "")
+        echo "Usage: emms-remote --option"
+        echo "--toggle-pause : Plays/Pauses EMMS"
+        echo "--next : Plays next track in EMMS's Playlist"
+        echo "--prev : Plays previous track in EMMS's Playlist"
+        echo "--start : Starts EMMS"
+        echo "--stop : Stops EMMS"
+        ;;
+
+    * )
+        exit
+        ;;
+esac

@@ -1,15 +1,19 @@
 EMACS ?= emacs
 EMACS_HOME = $(HOME)/.emacs.d
+SRC_DIR := src
+DEST_BIN_DIR := $(HOME)/bin
 
 # Collect data about the used init-system
+DAEMONSCRIPTS_DIR := $(SRC_DIR)/deamonscripts
+
 SYSTEMD_COMMAND := systemctl
 SYSTEMD_PATH := $(HOME)/.config/systemd/user
-SYSTEMD_SCRIPT := deamonscripts/emacs.service
+SYSTEMD_SCRIPT := $(DAEMONSCRIPTS_DIR)/emacs.service
 
 USING_INIT := $(shell { type "$(SYSTEMD_COMMAND)"; } 2>/dev/null | cut -d' ' -f1)
 
 # Initialize things to use Emacs as a mail client
-MAIL_SRC_DIR := mail
+MAIL_SRC_DIR := $(SRC_DIR)/mail
 DOTGNUS_SRC := $(MAIL_SRC_DIR)/.gnus
 DOTGNUS_DEST := $(HOME)/.gnus
 DOTGNUS_DEST_EXISTS := $(wildcard $(DOTGNUS_DEST))
@@ -28,11 +32,17 @@ TETRIS_SCORE_FILE := $(SCORE_DIR)/tetris
 SNAKE_SCORE_FILE := $(SCORE_DIR)/snake
 
 # Initialize EMMS variables
-EMMS_DIR := $(EMACS_HOME)/emms
-EMMS_SCORE_FILE := $(EMMS_DIR)/scores
-EMMS_STREAM_BOOKMARKS_FILE := $(EMMS_DIR)/emms-streams
-EMMS_HISTORY_FILE := $(EMMS_DIR)/emms-history
-EMMS_CACHE_FILE := $(EMMS_DIR)/emms-cache
+EMMS_SRC_DIR := $(SRC_DIR)/emms
+EMMS_CACHE_DEST_DIR := $(EMACS_HOME)/emms
+
+EMMS_SCORE_FILE := $(EMMS_CACHE_DEST_DIR)/scores
+EMMS_STREAM_BOOKMARKS_FILE := $(EMMS_CACHE_DEST_DIR)/emms-streams
+EMMS_HISTORY_FILE := $(EMMS_CACHE_DEST_DIR)/emms-history
+EMMS_CACHE_FILE := $(EMMS_CACHE_DEST_DIR)/emms-cache
+
+EMMS_REMOTE_SRC := $(EMMS_SRC_DIR)/emms-remote
+EMMS_REMOTE_DEST := $(DEST_BIN_DIR)/emms-remote
+EMMS_REMOTE_DEST_EXISTS := $(wildcard $(EMMS_REMOTE_DEST))
 
 all: setup-games setup-emms
 
@@ -75,16 +85,24 @@ install-mail:
 	cp "$(OFFLINEIMAPPY_SRC)" "$(OFFLINEIMAPPY_DEST)"
    endif
 
-install: install-daemon install-mail
+install-emms:
+   ifneq "$(EMMS_REMOTE_DEST_EXISTS)" "$(EMMS_REMOTE_DEST)"
+	cp "$(EMMS_REMOTE_SRC)" "$(EMMS_REMOTE_DEST)"
+   endif
+
+install: install-daemon install-mail install-emms
 
 
 uninstall-daemon:
-	rm $(SYSTEMD_PATH)/$(shell echo "$(SYSTEMD_SCRIPT)" | cut -d'/' -f2)
+	rm "$(SYSTEMD_PATH)"/$(shell echo "$(SYSTEMD_SCRIPT)" | cut -d'/' -f2)
 
 uninstall-mail:
-	rm $(DOTGNUS_DEST)
+	rm "$(DOTGNUS_DEST)"
 
-uninstall: uninstall-daemon uninstall-mail
+uninstall-emms:
+	rm "$(EMMS_REMOTE_DEST)"
+
+uninstall: uninstall-daemon uninstall-mail uninstall-emms
 
 
 uninstall-all-mail:

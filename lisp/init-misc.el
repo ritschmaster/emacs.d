@@ -67,17 +67,7 @@
 ;;----------------------------------------------------------------------------
 ;; Let the compilation window split to the bottom
 ;;----------------------------------------------------------------------------
-(defun my-compilation-hook ()
-  (when (not (get-buffer-window "*compilation*"))
-    (save-selected-window
-      (save-excursion
-        (let* ((w (split-window-vertically))
-               (h (window-height w)))
-          (select-window w)
-          (switch-to-buffer "*compilation*")
-          (shrink-window (- h 8)))))))
-(add-hook 'compilation-mode-hook 'my-compilation-hook)
-
-
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
 (provide 'init-misc)
