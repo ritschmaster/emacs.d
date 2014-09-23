@@ -83,6 +83,7 @@
 (require 'init-rails)
 (require 'init-sql)
 (require 'init-java)
+(require 'init-csharp)
 (require 'init-cmake)
 (require 'init-perl)
 (require 'init-scheme)

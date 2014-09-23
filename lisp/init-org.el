@@ -113,6 +113,7 @@
      (ditaa . t)
      (dot . t)
      (emacs-lisp . t)
+     (lisp . t)
      (gnuplot . t)
      (haskell . nil)
      (latex . t)
