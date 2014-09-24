@@ -127,5 +127,14 @@
      (sql . nil)
      (sqlite . t))))
 
+(custom-set-variables
+ '(org-agenda-files
+   '("~/org-mode/newgtd.org")))
+
+(defun gtd ()
+  (interactive)
+  (if (get-buffer "newgtd.org")
+      (switch-to-buffer "newgtd.org")
+    (find-file "~/org-mode/newgtd.org")))
 
 (provide 'init-org)

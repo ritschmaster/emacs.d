@@ -109,6 +109,8 @@
 (require 'init-erc)
 (load-file "~/.gnus")
 
+(require 'init-mentor)
+
 ;; Entertainment packages
 (require 'init-emms)
 (require 'init-games)
@@ -173,4 +175,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
-(put 'dired-find-alternate-file 'disabled nil)
+

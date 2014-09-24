@@ -7,7 +7,7 @@
 ;;----------------------------------------------------------------------------
 ;; rename file and buffer
 ;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> b") 'rename-this-file-and-buffer)
+(global-set-key (kbd "<f2> r") 'rename-this-file-and-buffer)
 
 ;;----------------------------------------------------------------------------
 ;; comments
@@ -26,7 +26,6 @@
                          (local-set-key (kbd "<f2> <f4>") 'ff-get-other-file)))
 (add-hook 'c++-mode-hook (lambda ()
                            (local-set-key (kbd "<f2> <f4>") 'ff-get-other-file)))
-
 
 ;; ;;----------------------------------------------------------------------------
 ;; ;; ECB
@@ -63,6 +62,8 @@
 (global-set-key (kbd "C-c s p") 'emms-previous)
 (global-set-key (kbd "C-c s h") 'emms-shuffle)
 (global-set-key (kbd "C-c s l") 'emms-play-playlist)
+(global-set-key (kbd "C-c s u")'emms-score-up-playing)
+(global-set-key (kbd "C-c s d")'emms-score-down-playing)
 (global-set-key (kbd "C-c s r") 'emms-toggle-repeat-track)
 (global-set-key (kbd "C-c s R") 'emms-toggle-repeat-playlist)
 (global-set-key (kbd "C-c s f") 'emms-add-find)
@@ -70,8 +71,13 @@
 (global-set-key (kbd "C-c s <") 'emms-seek-backward)
 
 ;;----------------------------------------------------------------------------
-;; EMMS
+;; Sauron
 ;;----------------------------------------------------------------------------
 (global-set-key (kbd "C-c d s") 'sauron-toggle-hide-show)
+
+;;----------------------------------------------------------------------------
+;; org-mode
+;;----------------------------------------------------------------------------
+(global-set-key (kbd "<f2> g") 'gtd)
 
 (provide 'init-keys)
