@@ -26,11 +26,18 @@ In particular, there's a nice config for *tab autocompletion*, and
 flycheck is used to immediately highlight syntax errors in Ruby, HAML,
 Python, Javascript, PHP and a number of other languages.
 
-## Features
+## Further features
 
 * Mail
  * A full gnus setup, easy to use (look at ~/.gnus after make install)
  * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and ~/.offineimap.py after make install)
+* Chat
+ * A simple ERC setup for using IRC
+* Organisation
+ * A simple GTD implementation
+* Multimedia
+ * A full setup for EMMS, including a script to access EMMS without an open Emacs
+* You can fully use it without an X server!
 
 ## Requirements
 

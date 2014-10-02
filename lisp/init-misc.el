@@ -70,4 +70,6 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
+(display-time)
+
 (provide 'init-misc)

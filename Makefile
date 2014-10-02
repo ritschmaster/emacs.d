@@ -104,6 +104,28 @@ install-emms:
 uninstall-emms:
 	rm "$(EMMS_REMOTE_DEST)"
 
+# Org-Mode
+ORG_MODE_SRC_DIR := $(SRC_DIR)/org-mode
+ORG_MODE_GTD_SRC := $(ORG_MODE_SRC_DIR)/gtd.org
+
+ORG_MODE_DEST_DIR := $(HOME)/org_mode
+ORG_MODE_GTD_DEST := $(ORG_MODE_DEST_DIR)/gtd.org
+ORG_MODE_GTD_DEST_EXISTS := $(wildcard $(ORG_MODE_GTD_DEST))
+ORG_MODE_NOTES_DEST := $(ORG_MODE_DEST_DIR)/notes.org
+
+install-org-mode:
+	mkdir -p "$(ORG_MODE_DEST_DIR)"
+   ifneq "$(ORG_MODE_GTD_DEST_EXISTS)" "$(ORG_MODE_GTD_DEST)"
+	cp "$(ORG_MODE_GTD_SRC)" "$(ORG_MODE_GTD_DEST)"
+   endif
+	touch "$(ORG_MODE_NOTES_DEST)"
+
+uninstall-org-mode:
+
+uinstall-all-org-mode: uninstall-org-mode
+	rm -r "$(ORG_MODE_DEST_DIR)"
+
+
 # TORRENT
 TORRENT_SRC_DIR := $(SRC_DIR)/torrent
 TORRENT_SRC_RC := $(TORRENT_SRC_DIR)/rtorrent.rc

@@ -72,7 +72,7 @@
 (setq emms-mode-line-mode-line-function 'my-mode-line-function)
 
 (emms-mode-line-enable)
-(emms-playing-time-enable-display)
+(emms-playing-time 1)
 
 (require 'emms-score)
 (emms-score-enable)

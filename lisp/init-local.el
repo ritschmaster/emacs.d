@@ -25,11 +25,6 @@
 ;; (setq browse-url-browser-function 'w3m-browse-url)
 ;; (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 
-;; linum
-(require-package 'linum)
-(require 'linum)
-(add-hook 'prog-mode-hook 'linum-mode)
-
 ;; octave-mode
 (require 'octave-mod)
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))

@@ -129,12 +129,29 @@
 
 (custom-set-variables
  '(org-agenda-files
-   '("~/org-mode/newgtd.org")))
+   '("~/org-mode/gtd.org")))
 
 (defun gtd ()
   (interactive)
-  (if (get-buffer "newgtd.org")
-      (switch-to-buffer "newgtd.org")
-    (find-file "~/org-mode/newgtd.org")))
+  (if (get-buffer "gtd.org")
+      (switch-to-buffer "gtd.org")
+    (find-file "~/org-mode/gtd.org")))
+
+(defun notes ()
+  (interactive)
+  (if (get-buffer "notes.org")
+      (switch-to-buffer "notes.org")
+    (find-file "~/org-mode/notes.org")))
+
+(require 'remember)
+(require 'org-remember)
+(setq remember-annotation-functions '(org-remember-annotation))
+(setq remember-handler-functions '(org-remember-handler))
+(add-hook 'remember-mode-hook 'org-remember-apply-template)
+
+(setq org-remember-templates
+      '(("Todo" ?t "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" "~/org-mode/gtd.org" "Tasks")
+        ("Note" ?n "\n* %^{topic} %T \n%i%?\n" "~/org-mode/notes.org")
+        ("WordofDay" ?w "\n* %^{topic} \n%i%?\n" "~/org-mode/wotd.org")))
 
 (provide 'init-org)
