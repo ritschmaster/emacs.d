@@ -103,6 +103,10 @@ information."))))
   (funcall (symbol-value '%smtpmail-via-smtp) recipient
            smtpmail-text-buffer))
 
+;;----------------------------------------------------------------------------
+;; PGG Encryption
+;;----------------------------------------------------------------------------
+(require 'pgg)
 
 (provide 'init-gnus)
 ;;; init-gnus ends here

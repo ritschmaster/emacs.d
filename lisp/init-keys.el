@@ -17,7 +17,20 @@
 ;; gnus
 ;;----------------------------------------------------------------------------
 (global-set-key (kbd "<f2> G") 'gnus)
+(global-set-key (kbd "<f2> s") 'smtpmail-send-queued-mail)
 
+;;----------------------------------------------------------------------------
+;; w3m
+;;----------------------------------------------------------------------------
+(global-set-key (kbd "<f2> w") 'w3m)
+(global-set-key (kbd "<f2> S") 'w3m-search)
+(global-set-key (kbd "<f2> U") 'w3m-goto-url)
+
+;;----------------------------------------------------------------------------
+;; ispell
+;;----------------------------------------------------------------------------
+(global-set-key (kbd "<f2> c") 'ispell)
+(global-set-key (kbd "<f2> C") 'ispell-change-dictionary)
 
 ;;----------------------------------------------------------------------------
 ;; c-mode & c++-mode
@@ -62,14 +75,17 @@
 (global-set-key (kbd "C-c s n") 'emms-next)
 (global-set-key (kbd "C-c s p") 'emms-previous)
 (global-set-key (kbd "C-c s h") 'emms-shuffle)
-(global-set-key (kbd "C-c s l") 'emms-play-playlist)
+(global-set-key (kbd "C-c s l") 'emms-add-playlist)
+(global-set-key (kbd "C-c s L") 'emms-play-playlist)
 (global-set-key (kbd "C-c s u")'emms-score-up-playing)
 (global-set-key (kbd "C-c s d")'emms-score-down-playing)
 (global-set-key (kbd "C-c s r") 'emms-toggle-repeat-track)
 (global-set-key (kbd "C-c s R") 'emms-toggle-repeat-playlist)
 (global-set-key (kbd "C-c s f") 'emms-add-find)
+(global-set-key (kbd "C-c s c") 'emms-show)
 (global-set-key (kbd "C-c s >") 'emms-seek-forward)
 (global-set-key (kbd "C-c s <") 'emms-seek-backward)
+
 
 ;;----------------------------------------------------------------------------
 ;; Sauron

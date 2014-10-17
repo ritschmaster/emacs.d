@@ -35,7 +35,7 @@
          (title (or (emms-track-get track 'info-title) short-name))
          (rating (emms-score-get-score name))
          (rate-char ?\u2665))
-    (format "%20s - %20s - %2s. %20s |%2d %s"
+    (format "%20s - %20s - %2s. %20s |%2d%s"
             (substring artist
                        0
                        (min 20 (length artist)))
@@ -64,9 +64,13 @@
          (playing-time (or (emms-track-get track 'info-playing-time) 0))
 
          (line-string ""))
-    (if (not (null artist))
-        (setq line-string (concat line-string (format "%s - " artist))))
-    (setq line-string (concat line-string (format "%s" title)))
+    ;; (if (not (null artist))
+    ;;     (setq line-string (concat line-string (format "%s - " artist))))
+    (setq line-string (concat line-string (format "%s"
+                                                  (substring
+                                                   title
+                                                   0
+                                                   (min 20 (length title))))))
     (format emms-mode-line-format line-string)))
 
 (setq emms-mode-line-mode-line-function 'my-mode-line-function)
