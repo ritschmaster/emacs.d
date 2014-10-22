@@ -5,9 +5,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; offlineimap
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; offlineimap
 (require-package 'offlineimap)
 (add-hook 'gnus-before-startup-hook 'offlineimap)
+
+(require 'netrc)
+(defun offlineimap-get-password (host port login)
+  "Get the password of a user with login on a host with port."
+  (let* ((netrc (netrc-parse "~/.authinfo.gpg")))
+    (let ((matches nil))
+      (dolist (entry netrc)
+        (if (and
+             (string= (cdr (elt entry 0)) host)
+             (string= (cdr (elt entry 1)) login)
+             (string= (cdr (elt entry 3)) port))
+            (setq matches (cdr (elt entry 2)))))
+      matches)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; bbdb set up
