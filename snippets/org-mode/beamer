@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: beamerelisp
+# key: beamer
+# --
+#+startup: beamer
+#+startup: beamer
+#+BEAMER_FRAME_LEVEL: 2
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \mode<beamer>{\usetheme{$1}}
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{$2}\tableofcontents[currentsection]\end{frame}}
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
