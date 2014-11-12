@@ -88,13 +88,13 @@ EMMS_REMOTE_DEST := $(DEST_BIN_DIR)/emms-remote
 EMMS_REMOTE_DEST_EXISTS := $(wildcard $(EMMS_REMOTE_DEST))
 
 setup-emms:
-	mkdir -p "$(EMMS_DIR)"
+	mkdir -p "$(EMMS_CACHE_DEST_DIR)"
 	touch "$(EMMS_SCORE_FILE)"
 	touch "$(EMMS_STREAM_BOOKMARKS_FILE)"
 	touch "$(EMMS_HISTORY_FILE)"
 	touch "$(EMMS_CACHE_FILE)"
 clean-emms:
-	rm -rf "$(EMMS_DIR)"
+	rm -rf "$(EMMS_CACHE_DEST_DIR)"
 
 install-emms:
    ifneq "$(EMMS_REMOTE_DEST_EXISTS)" "$(EMMS_REMOTE_DEST)"

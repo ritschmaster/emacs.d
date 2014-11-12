@@ -120,5 +120,59 @@ information."))))
 ;;----------------------------------------------------------------------------
 (require 'pgg)
 
+;; verify/decrypt only if mml knows about the protocl used
+(setq mm-verify-option 'known)
+(setq mm-decrypt-option 'known)
+
+;; Here we make button for the multipart
+(setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
+
+;; Automatically sign when sending mails
+(add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
+
+;; Tells Gnus to inline the part
+(add-to-list 'mm-inlined-types "application/pgp$")
+
+;; Tells Gnus how to display the part when it is requested
+(add-to-list 'mm-inline-media-tests '("application/pgp$"
+                                      mm-inline-text identity))
+
+;; Tell Gnus not to wait for a request, just display the thing
+;; straight away.
+(add-to-list 'mm-automatic-display "application/pgp$")
+
+;; But don't display the signatures, please.
+(setq mm-automatic-display (remove "application/pgp-signature"
+                                   mm-automatic-display))
+
+(defcustom gnus-enable-automatic-message-encryption t
+  "Non nil enables the automatic encryption of messages within gnus."
+  :type 'boolean
+  :group 'init-gnus)
+
+;; Automatic signing/encryption if possible
+(add-hook
+ 'message-send-hook
+ (lambda ()
+   (cond ((message-mail-p)
+          (let ((toheader (message-fetch-field "To")))
+            (let ((recipient (nth 1 (mail-extract-address-components toheader nil))))
+              (message recipient)
+              (cond ((and
+                      gnus-enable-automatic-message-encryption
+                      (and (not (null recipient))
+                           (or
+                            (pgg-lookup-key recipient)
+                            (and
+                             (pgg-fetch-key pgg-default-keyserver-address recipient)
+                             (pgg-lookup-key recipient)) ;; we might have added some keys but not the right one ! so we need to check the local base again
+                            )))
+                     (mml-secure-message-encrypt-pgpmime))
+                    (t
+                     (mml-secure-message-sign-pgpmime))))))
+         ((message-news-p)
+          (mml-secure-message-sign-pgpmime)))))
+
+
 (provide 'init-gnus)
 ;;; init-gnus ends here

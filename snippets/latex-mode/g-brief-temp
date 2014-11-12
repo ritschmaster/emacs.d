@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: g-brief template
+# key: g-brief-temp
+# --
+\documentclass[12pt]{g-brief}
+\fenstermarken
+\trennlinien
+\faltmarken
+\Name {$1}
+\Strasse {$2}
+\Ort {$3}
+\Telefon {$4}
+\Telefax {$5}
+\HTTP {$6}
+\EMail {$7}
+\Bank {$8}
+\BLZ {$9}
+\Konto {$10}
+\MeinZeichen {$11}
+\Unterschrift {$12}
+
+\Postvermerk {$13}
+\IhrZeichen {$14}
+\IhrSchreiben {$15}
+\Adresse {$16}
+\Betreff {$17}
+\Datum {\today}
+\Anrede {$18}
+\Gruss {Mit freundlichen Grüßen}{1cm}
+\Anlagen {$19}
+\begin{document}
+\begin{g-brief}
+$20
+\end{g-brief}
+\end{document}
