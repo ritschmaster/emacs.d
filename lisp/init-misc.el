@@ -63,32 +63,36 @@
 (require 'linum)
 (add-hook 'prog-mode-hook 'linum-mode)
 
-
 ;;----------------------------------------------------------------------------
-;; compilation setup
+;; enable hideshow for all programming modes
 ;;----------------------------------------------------------------------------
-(defun brian-compile-finish (buffer outstr)
-  (unless (string-match "finished" outstr)
-    (switch-to-buffer-other-window buffer))
-  t)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 
-(setq compilation-finish-functions 'brian-compile-finish)
+;; ;;----------------------------------------------------------------------------
+;; ;; compilation setup
+;; ;;----------------------------------------------------------------------------
+;; (defun brian-compile-finish (buffer outstr)
+;;   (unless (string-match "finished" outstr)
+;;     (switch-to-buffer-other-window buffer))
+;;   t)
 
-(defadvice compilation-start
-  (around inhibit-display
-      (command &optional mode name-function highlight-regexp))
-  (if (not (string-match "^\\(find\\|grep\\)" command))
-      (flet ((display-buffer)
-         (set-window-point)
-         (goto-char))
-    (fset 'display-buffer 'ignore)
-    (fset 'goto-char 'ignore)
-    (fset 'set-window-point 'ignore)
-    (save-window-excursion
-      ad-do-it))
-    ad-do-it))
+;; (setq compilation-finish-functions 'brian-compile-finish)
 
-(ad-activate 'compilation-start)
+;; (defadvice compilation-start
+;;   (around inhibit-display
+;;       (command &optional mode name-function highlight-regexp))
+;;   (if (not (string-match "^\\(find\\|grep\\)" command))
+;;       (flet ((display-buffer)
+;;          (set-window-point)
+;;          (goto-char))
+;;     (fset 'display-buffer 'ignore)
+;;     (fset 'goto-char 'ignore)
+;;     (fset 'set-window-point 'ignore)
+;;     (save-window-excursion
+;;       ad-do-it))
+;;     ad-do-it))
+
+;; (ad-activate 'compilation-start)
 
 
 (display-time)

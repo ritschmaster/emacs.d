@@ -55,6 +55,7 @@
 (setq mm-default-directory (if (file-readable-p mime-download-folder)
                                mime-download-folder
                              "~/"))
+(add-hook 'message-mode-hook 'turn-on-orgstruct) ; Enable features from org-mode
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; smtpmail mutli
