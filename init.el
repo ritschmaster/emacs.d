@@ -82,7 +82,10 @@
 (require 'init-rails)
 (require 'init-sql)
 (require 'init-java)
+(require 'init-csharp)
 (require 'init-cmake)
+(require 'init-perl)
+(require 'init-scheme)
 
 (require 'init-paredit)
 (require 'init-lisp)
@@ -105,8 +108,13 @@
 (require 'init-erc)
 (load-file "~/.gnus")
 
-;; Extra packages which don't require any configuration
+(require 'init-mentor)
 
+;; Entertainment packages
+(require 'init-emms)
+(require 'init-games)
+
+;; Extra packages which don't require any configuration
 (require-package 'gnuplot)
 (require-package 'lua-mode)
 (require-package 'htmlize)
@@ -150,6 +158,15 @@
             (message "init completed in %.2fms"
                      (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
+;;----------------------------------------------------------------------------
+;; Set all key strokes for all modes
+;;----------------------------------------------------------------------------
+(require 'init-keys)
+
+;;----------------------------------------------------------------------------
+;; Enable the Sauron-monitor
+;;----------------------------------------------------------------------------
+(require 'init-sauron)
 
 (provide 'init)
 
@@ -157,3 +174,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+

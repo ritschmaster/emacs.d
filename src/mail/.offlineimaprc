@@ -1,0 +1,45 @@
+[general]
+ui = Noninteractive.Basic
+pythonfile=~/.offlineimap.py
+accounts = First.Account,Second.Account
+maxsyncaccounts = 2
+
+# Setting up the accounts
+[Account First.Account]
+localrepository = First.AccountLocal
+remoterepository = First.AccountRemote
+autorefresh = 1
+
+[Account Second.Account]
+localrepository = Second.AccountLocal
+remoterepository = Second.AccountRemote
+autorefresh = 1
+
+# Setting up the local repositories of the accounts
+[Repository First.AccountLocal]
+type = Maildir
+localfolders = ~/Mail/First.Account
+
+[Repository Second.AccountLocal]
+type = Maildir
+localfolders = ~/Mail/Second.Account
+
+# Setting up the remote repositories of the accounts
+[Repository First.AccountRemote]
+type = Gmail
+remoteuser = First.Account@gmail.com
+remotepasseval = get_password_emacs("imap.somewhere.org", "First.Account@somewhere.org", "993")
+holdconnectionopen = true
+ssl = yes
+keepalive = 60
+realdelete = yes
+
+[Repository Second.AccountRemote]
+type = IMAP
+remoteuser = Second.Account@openmailbox.org
+remotehost = imap.openmailbox.org
+remotepasseval = get_password_emacs("imap.somewhere.org", "Second.Account@somewhere.org", "993")
+holdconnectionopen = true
+ssl = yes
+keepalive = 60
+realdelete = yes

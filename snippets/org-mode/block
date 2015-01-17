@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Block for a presentation
+# key: block
+# --
+:PROPERTIES:
+:BEAMER_col: $1
+:BEAMER_env: block
+:END:

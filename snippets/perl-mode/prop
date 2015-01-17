@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: prop
+# key: prop
+# --
+sub $1 {
+    my ($self, $value) = @_;
+    if (@_ == 2) {
+    $self->{_$1} = $value;
+    }
+    return $self->{_$1};
+}

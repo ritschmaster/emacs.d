@@ -20,7 +20,13 @@
       org-agenda-window-setup 'current-window
       org-fast-tag-selection-single-key 'expert
       org-export-kill-product-buffer-when-displayed t
-      org-tags-column 80)
+      org-tags-column 80
+
+      org-export-latex-hyperref-format "\\ref{%s}" ; enable exporting
+                                                   ; cross references
+                                                   ; in the document
+      )
+
 
 
 ; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
@@ -113,6 +119,7 @@
      (ditaa . t)
      (dot . t)
      (emacs-lisp . t)
+     (lisp . t)
      (gnuplot . t)
      (haskell . nil)
      (latex . t)
@@ -126,5 +133,31 @@
      (sql . nil)
      (sqlite . t))))
 
+(custom-set-variables
+ '(org-agenda-files
+   '("~/org-mode/gtd.org")))
+
+(defun gtd ()
+  (interactive)
+  (if (get-buffer "gtd.org")
+      (switch-to-buffer "gtd.org")
+    (find-file "~/org-mode/gtd.org")))
+
+(defun notes ()
+  (interactive)
+  (if (get-buffer "notes.org")
+      (switch-to-buffer "notes.org")
+    (find-file "~/org-mode/notes.org")))
+
+(require 'remember)
+(require 'org-remember)
+(setq remember-annotation-functions '(org-remember-annotation))
+(setq remember-handler-functions '(org-remember-handler))
+(add-hook 'remember-mode-hook 'org-remember-apply-template)
+
+(setq org-remember-templates
+      '(("Todo" ?t "* TODO %^{Brief Description} %^g\n%?\nAdded: %U" "~/org-mode/gtd.org" "Tasks")
+        ("Note" ?n "\n* %^{topic} %T \n%i%?\n" "~/org-mode/notes.org")
+        ("WordofDay" ?w "\n* %^{topic} \n%i%?\n" "~/org-mode/wotd.org")))
 
 (provide 'init-org)

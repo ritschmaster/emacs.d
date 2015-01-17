@@ -1,0 +1,23 @@
+min_peers = 40
+max_peers = 52
+
+min_peers_seed = 10
+max_peers_seed = 52
+
+max_uploads = 8
+
+download_rate = 200
+upload_rate = 28
+
+check_hash = yes
+
+directory = /home/[user]/torrents/
+session = /home/[user]/.rtorrent-session/
+
+encryption = allow_incoming,try_outgoing,enable_retry
+
+port_range = 49164-49164
+
+scgi_port = 127.0.0.1:5000
+xmlrpc_dialect = i8
+encoding_list = UTF-8

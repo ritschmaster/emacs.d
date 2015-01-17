@@ -1,0 +1,124 @@
+* Tasks
+#+CATEGORY: Tasks
+** TODO Write article about GTD and orgmode                         :COMPUTER:
+Added: [2009-01-09 Fri 07:42]
+** TODO Read Presentation Zen (Garr Reynolds)                        :READING:
+   Added: [2009-01-15 Thu 16:55]
+** Write folder synchronisation script in Python                    :COMPUTER:
+Added: [2009-01-15 Thu 17:00]
+* Calendar
+#+CATEGORY: Calendar
+** Public Holidays 2009
+*** Australia Day (Holiday)
+    SCHEDULED: <2009-01-26 Mon>
+*** Valentines Day
+    SCHEDULED: <2009-02-14 Sat>
+*** St Patricks Day
+    SCHEDULED: <2009-03-17 Tue>
+*** Good Friday (Holiday)
+    SCHEDULED: <2009-04-10 Fri>
+*** Easter Sunday
+    SCHEDULED: <2009-04-12 Sun>
+*** Easter Monday (Holiday)
+    SCHEDULED: <2009-04-13 Mon>
+*** Anzac Day
+    SCHEDULED: <2009-04-25 Sat>
+*** Anzac Day (Holiday)
+    SCHEDULED: <2009-04-27 Mon>
+*** Mothers Day
+    SCHEDULED: <2009-05-10 Sun>
+*** Queens Birthday (Holiday)
+    SCHEDULED: <2009-06-08 Mon>
+*** Bank Holiday
+    SCHEDULED: <2009-08-03 Mon>
+*** Fathers Day
+    SCHEDULED: <2009-09-06 Sun>
+*** Daylight Saving Starts
+    SCHEDULED: <2009-10-04 Sun>
+*** Labour Day (Holiday)
+    SCHEDULED: <2009-10-05 Mon>
+*** Melbourne Cup
+    SCHEDULED: <2009-11-03 Tue>
+*** Remembrance Day
+    SCHEDULED: <2009-11-11 Wed>
+*** Christmas Day
+    SCHEDULED: <2009-12-25 Fri>
+*** Boxing Day
+    SCHEDULED: <2009-12-26 Sat>
+*** Boxing Day (Holiday)
+    SCHEDULED: <2009-12-28 Mon>
+** School Year 2009
+*** Term  1
+**** Year 7 and 12 and new students start
+     SCHEDULED: <2009-01-28 Wed>
+**** All students start Term 1
+     SCHEDULED: <2009-01-29 Thu>
+**** Term 1 ends with Easter
+     SCHEDULED: <2009-04-08 Wed>
+*** Term 2 starts
+    SCHEDULED: <2009-04-27 Mon>
+*** Term 2 ends
+    SCHEDULED: <2009-07-02 Thu>
+*** Term 3 starts
+    SCHEDULED: <2009-07-28 Tue>
+*** Term 3 ends
+    SCHEDULED: <2009-10-02 Fri>
+*** Term 4
+    SCHEDULED: <2009-10-19 Mon>
+*** Term 4 ends with Speech Day
+    SCHEDULED: <2009-12-11 Fri>
+** TODO Review Weekly                                                   :HOME:
+   SCHEDULED: <2009-01-16 Fri +1w>
+** PC Backup to DVD                                                 :COMPUTER:
+   SCHEDULED: <2009-01-31 Sat +1m>
+   SCHEDULED: <2009-01-17 Sat +1m>
+* Birthdays
+#+CATEGORY: Birthdays
+%%(diary-anniversary 3 16 1953) Richard M. Stallman is %d
+* Projects
+#+CATEGORY: Projects
+** Complete GTD and org-mode implementation                          :PROJECT:
+*** Document my GTD Backup script and write article                 :COMPUTER:
+*** TODO Tidy up my GTD web site .. directory on display            :COMPUTER:
+*** Explore org-mode for Project planning                           :COMPUTER:
+Use drawings to describe the five phases of workflow
+*** Reread Ready for Anything (RFA) in 2009                          :READING:
+*** Org-mode
+**** Study orgmode clockin/out and effort                             :OFFICE:
+**** Update tutorial on Remember mode                               :COMPUTER:
+**** Finalise article on org-mode and SMART Goals                   :COMPUTER:
+**** Publish article about my CD-catalog script                     :COMPUTER:
+* Financial
+#+CATEGORY: Financial
+** TODO Prepare a Budget for 2009                                   :COMPUTER:
+   :PROPERTIES:
+   :Effort:   2:00
+   :END:
+** APPT Pay Credit Cards                                            :COMPUTER:
+   SCHEDULED: <2009-01-22 Wed +1m>
+** APPT Pay Mortgage                                                :COMPUTER:
+   SCHEDULED: <2009-01-22 Wed +1m>
+* Borrowed
+#+CATEGORY: Borrowed
+** Stanton Library
+*** TODO Read Parrots of Australia                             :READING:
+    DEADLINE: <2009-01-30 Fri>
+    :PROPERTIES:
+    :Effort:   1:00
+    :END:
+*** TODO Watch CLOSELY OBSERVED TRAINS                             :DVD:
+    DEADLINE: <2009-01-23 Fri>
+    :PROPERTIES:
+    :Effort:   2:00
+    :END:
+** Turramurra Library
+* org-mode configuration
+#+STARTUP: overview
+#+STARTUP: hidestars
+#+STARTUP: logdone
+#+PROPERTY: Effort_ALL  0:10 0:20 0:30 1:00 2:00 4:00 6:00 8:00
+#+COLUMNS: %38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM{Total}
+#+PROPERTY: Effort_ALL 0 0:10 0:20 0:30 1:00 2:00 3:00 4:00 8:00
+#+TAGS: { OFFICE(o) HOME(h) } COMPUTER(c) PROJECT(p) READING(r)
+#+TAGS: DVD(d) LUNCHTIME(l)
+#+SEQ_TODO: TODO(t) STARTED(s) WAITING(w) APPT(a) | DONE(d) CANCELLED(c) DEFERRED(f)

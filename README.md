@@ -19,10 +19,28 @@ config adds improved defaults and extended support for the following:
 * Haskell
 * Erlang
 * Common Lisp (with Slime)
+* Perl
+* Bash
 
 In particular, there's a nice config for *tab autocompletion*, and
 flycheck is used to immediately highlight syntax errors in Ruby, HAML,
 Python, Javascript, PHP and a number of other languages.
+
+## Further features
+
+* Mail
+ * A full gnus setup, easy to use (look at ~/.gnus after make install)
+ * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and
+   ~/.offineimap.py after make install)
+ * Do not panic if you cannot send mails! Use F1-s for it!
+* Chat
+ * A simple ERC setup for using IRC
+* Organisation
+ * A simple GTD implementation
+* Multimedia
+ * A full setup for EMMS, including a script to access EMMS without an
+   open Emacs frame
+* You can fully use it without a running X server!
 
 ## Requirements
 
@@ -41,8 +59,37 @@ To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 
 ``` git clone https://github.com/purcell/emacs.d.git ~/.emacs.d ```
 
+Then change into it and do:
+```bash
+make
+make install
+```
+
 Upon starting up Emacs for the first time, further third-party
 packages will be automatically downloaded and installed.
+
+If you like to use EMMS you have to specify the player you want to
+use.
+```lisp
+; in custom.el place:
+(setq emms-player-list '(emms-player-mplayer)) ; if you use mplayer
+(setq emms-player-list '(emms-player-mpd)) ; if you use mpd
+```
+
+## Uninstallation
+
+To uninstall things that have been installed with this Repository and
+are specific for Emacs:
+
+```bash
+make uninstall
+```
+
+To uninstall everything that have been installed with this Repository:
+
+```bash
+make uninstall-all
+```
 
 ## Important note about `ido`
 
@@ -100,3 +147,7 @@ still experience problems, go ahead and
 [![](http://api.coderwall.com/purcell/endorsecount.png)](http://coderwall.com/purcell)
 
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://uk.linkedin.com/in/stevepurcell)
+
+[sanityinc.com](http://www.sanityinc.com/)
+
+[@sanityinc](https://twitter.com/)

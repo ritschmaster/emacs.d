@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: define-application-frame word
+# key: defclimapp
+# --
+(define-application-frame $1
+    ($2)
+  ($7)
+  ${3:(:panes
+   $4)}
+  ${5:(:layouts
+   $6)})

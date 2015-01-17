@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: prop
+# key: prop
+# --
+var $1 = $2;
+Object.defineProperty(this, "$3", {
+    get : function() {
+        return $1;
+    },
+    set : function(value) {
+        $1 = value;
+    }
+});

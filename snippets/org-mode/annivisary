@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anniversary entry
+# key: ann
+# --
+%%(diary-anniversary $1 $2 $3)

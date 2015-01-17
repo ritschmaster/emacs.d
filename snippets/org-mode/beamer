@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Beamer setup
+# key: beamer
+# --
+#+startup: beamer
+#+startup: beamer
+#+BEAMER_FRAME_LEVEL: 2
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \mode<beamer>{\usetheme{$1}\usecolortheme{$2}}
+#+LATEX_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{$3}\tableofcontents[currentsection]\end{frame}}
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)

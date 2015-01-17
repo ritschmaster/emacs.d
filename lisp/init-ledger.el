@@ -11,7 +11,9 @@
   (define-key ledger-mode-map (kbd "C-o") 'open-line))
 
 (setq ledger-highlight-xact-under-point nil
-      ledger-use-iso-dates nil)
+      ledger-use-iso-dates nil
+      ledger-post-auto t
+      ledger-post-amount-alignment-column 80)
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-copy-env "LEDGER_FILE"))
