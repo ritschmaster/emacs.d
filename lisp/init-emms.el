@@ -98,4 +98,7 @@
 ;;; set the available players
 ; (setq emms-player-list '(emms-player-mplayer emms-player-mpd))
 
+;;; soundklaus
+(require-package 'soundklaus)
+
 (provide 'init-emms)

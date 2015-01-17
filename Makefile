@@ -18,9 +18,6 @@ DAEMONSCRIPTS_DIR := $(SRC_DIR)/daemonscripts
 SYSTEMD_SCRIPT := $(DAEMONSCRIPTS_DIR)/emacs.service
 
 install-daemon:
-   ifeq "$(USING_INIT)" "$(SYSTEMD_COMMAND)"
-
-install:
    ifdef USING_SYSTEMD
 	mkdir -p "$(SYSTEMD_PATH)"
 	cp "$(SYSTEMD_SCRIPT)" "$(SYSTEMD_PATH)/"
@@ -106,6 +103,24 @@ install-emms:
 
 uninstall-emms:
 	rm "$(EMMS_REMOTE_DEST)"
+
+
+# MPD daemon script
+MPD_SYSTEMD_SCRIPT_SRC := $(DAEMONSCRIPTS_DIR)/mpd.service
+MPD_SYSTEMD_SCRIPT_DEST := $(SYSTEMD_PATH)/mpd.service
+MPD_SYSTEMD_SCRIPT_DEST_EXISTS := $(wildcard $(MPD_SYSTEMD_SCRIPT_DEST))
+
+install-mpd:
+   ifdef USING_SYSTEMD
+	mkdir -p "$(SYSTEMD_PATH)"
+#   ifneq "$(MPD_SYSTEMD_SCRIPT_DEST_EXISTS)" "$(MPD_SYSTEMD_SCRIPT_DEST)"
+	cp "$(MPD_SYSTEMD_SCRIPT_SRC)" "$(SYSTEMD_PATH)/"
+#   endif
+   endif
+
+uninstall-mpd:
+	rm "$(MPD_SYSTEMD_SCRIPT_DEST)"
+
 
 # Org-Mode
 ORG_MODE_SRC_DIR := $(SRC_DIR)/org-mode
