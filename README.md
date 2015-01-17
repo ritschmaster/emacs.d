@@ -30,14 +30,17 @@ Python, Javascript, PHP and a number of other languages.
 
 * Mail
  * A full gnus setup, easy to use (look at ~/.gnus after make install)
- * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and ~/.offineimap.py after make install)
+ * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and
+   ~/.offineimap.py after make install)
+ * Do not panic if you cannot send mails! Use F1-s for it!
 * Chat
  * A simple ERC setup for using IRC
 * Organisation
  * A simple GTD implementation
 * Multimedia
- * A full setup for EMMS, including a script to access EMMS without an open Emacs
-* You can fully use it without an X server!
+ * A full setup for EMMS, including a script to access EMMS without an
+   open Emacs frame
+* You can fully use it without a running X server!
 
 ## Requirements
 
@@ -64,6 +67,14 @@ make install
 
 Upon starting up Emacs for the first time, further third-party
 packages will be automatically downloaded and installed.
+
+If you like to use EMMS you have to specify the player you want to
+use.
+```lisp
+; in custom.el place:
+(setq emms-player-list '(emms-player-mplayer)) ; if you use mplayer
+(setq emms-player-list '(emms-player-mpd)) ; if you use mpd
+```
 
 ## Uninstallation
 

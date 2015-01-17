@@ -1,8 +1,8 @@
 (require-package 'emms)
 
 (require 'emms-setup)
+(require 'emms-browser)
 (emms-standard)
-(emms-default-players)
 
 (defvar *fixed-emms-change-amount* 10)
 
@@ -10,8 +10,7 @@
       emms-stream-bookmarks-file "~/.emacs.d/emms/emms-streams"
       emms-history-file "~/.emacs.d/emms/emms-history"
       emms-cache-file "~/.emacs.d/emms/emms-cache"
-      emms-source-file-default-directory "~/Music"
-      emms-source-playlist "~/Playlists")
+      emms-source-file-default-directory "~/Music")
 
 (setq emms-score-enabled-p t
       emms-browser-default-browse-type 'info-album
@@ -35,17 +34,17 @@
          (title (or (emms-track-get track 'info-title) short-name))
          (rating (emms-score-get-score name))
          (rate-char ?\u2665))
-    (format "%20s - %20s - %2s. %20s |%2d%s"
-            (substring artist
-                       0
-                       (min 20 (length artist)))
-            (substring album
-                       0
-                       (min 20 (length album)))
+    (format "%2s. %20s - %20s - %20s |%2d%s"
             tracknumber
             (substring title
                        0
                        (min 20 (length title)))
+            (substring album
+                       0
+                       (min 20 (length album)))
+            (substring artist
+                       0
+                       (min 20 (length artist)))
             play-count
             (make-string rating rate-char))))
 
@@ -89,5 +88,14 @@
     (funcall lower-or-raise-func)
     (setq emms-volume-change-amount old-volume-amount)))
 
+
+;;; mpd setup
+(require 'emms-player-mpd)
+(add-to-list 'emms-info-functions 'emms-info-mpd)
+(add-to-list 'emms-player-list 'emms-player-mpd)
+(setq emms-player-mpd-music-directory emms-source-file-default-directory)
+
+;;; set the available players
+; (setq emms-player-list '(emms-player-mplayer emms-player-mpd))
 
 (provide 'init-emms)

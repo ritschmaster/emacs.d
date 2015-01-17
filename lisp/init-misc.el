@@ -57,16 +57,22 @@
 (global-set-key "\M--" 'dispatch-goto-matching)
 
 ;;----------------------------------------------------------------------------
-;; linum mode for all programming modes
+;; linum mode for all programming modes and auctex
 ;;----------------------------------------------------------------------------
 (require-package 'linum)
 (require 'linum)
 (add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'TeX-mode-hook 'linum-mode)
 
 ;;----------------------------------------------------------------------------
 ;; enable hideshow for all programming modes
 ;;----------------------------------------------------------------------------
 (add-hook 'prog-mode-hook 'hs-minor-mode)
+
+;;----------------------------------------------------------------------------
+;; disable the menu bar
+;;----------------------------------------------------------------------------
+(menu-bar-mode -1)
 
 ;; ;;----------------------------------------------------------------------------
 ;; ;; compilation setup

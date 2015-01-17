@@ -28,12 +28,18 @@ function emms-stop
 function emms-play-playlist
 {
     playlistFile=$1
-    emacsclient -e "(emms-play-playlist \"$1\")"
+    emacsclient -e "(emms-play-playlist \"$playlistFile\")"
 }
 
 function emms-random
 {
     emacsclient -e "(emms-random)"
+}
+
+function emms-add-find
+{
+    regex=$1
+    emacsclient -e "(emms-add-find emms-source-file-default-directory \"$regex\")"
 }
 
 case "$1" in
@@ -69,6 +75,9 @@ case "$1" in
         emacsclient -e "(emms-track-description (emms-playlist-current-selected-track))" \
             | sed s/\"//g
         ;;
+    --find )
+        emms-add-find "$2"
+        ;;
 
     "")
         echo "Usage: emms-remote --option"
@@ -77,6 +86,8 @@ case "$1" in
         echo "--prev : Plays previous track in EMMS's Playlist"
         echo "--start : Starts EMMS"
         echo "--stop : Stops EMMS"
+        echo "--random: Plays random title"
+        echo "--find: Adds all files that match a regex"
         ;;
 
     * )
