@@ -18,7 +18,7 @@ DAEMONSCRIPTS_DIR := $(SRC_DIR)/daemonscripts
 SYSTEMD_SCRIPT := $(DAEMONSCRIPTS_DIR)/emacs.service
 
 install-daemon:
-   ifdef USING_SYSTEMD
+   ifeq "$(USING_INIT)" "$(SYSTEMD_COMMAND)"
 	mkdir -p "$(SYSTEMD_PATH)"
 	cp "$(SYSTEMD_SCRIPT)" "$(SYSTEMD_PATH)/"
    endif
@@ -110,16 +110,28 @@ MPD_SYSTEMD_SCRIPT_SRC := $(DAEMONSCRIPTS_DIR)/mpd.service
 MPD_SYSTEMD_SCRIPT_DEST := $(SYSTEMD_PATH)/mpd.service
 MPD_SYSTEMD_SCRIPT_DEST_EXISTS := $(wildcard $(MPD_SYSTEMD_SCRIPT_DEST))
 
+MPD_SRC_DIR := $(SRC_DIR)/mpd
+MPD_DEST_DIR := $(HOME)/.config/mpd
+MPD_CONF_SRC := $(MPD_SRC_DIR)/mpd.conf
+MPD_CONF_DEST := $(MPD_DEST_DIR)/mpd.conf
+MPD_CONF_DEST_EXISTS := $(wildcard $(MPD_CONF_DEST))
+
 install-mpd:
-   ifdef USING_SYSTEMD
+   ifeq "$(USING_INIT)" "$(SYSTEMD_COMMAND)"
 	mkdir -p "$(SYSTEMD_PATH)"
-#   ifneq "$(MPD_SYSTEMD_SCRIPT_DEST_EXISTS)" "$(MPD_SYSTEMD_SCRIPT_DEST)"
+   ifneq "$(MPD_SYSTEMD_SCRIPT_DEST_EXISTS)" "$(MPD_SYSTEMD_SCRIPT_DEST)"
 	cp "$(MPD_SYSTEMD_SCRIPT_SRC)" "$(SYSTEMD_PATH)/"
-#   endif
+   endif
    endif
 
-uninstall-mpd:
+	mkdir -p "$(MPD_DEST_DIR)"
+   ifneq "$(MPD_CONF_DEST_EXISTS)" "$(MPD_CONF_DEST)"
+	cp "$(MPD_CONF_SRC)" "$(MPD_CONF_DEST)"
+   endif
+
+uninstall-all-mpd:
 	rm "$(MPD_SYSTEMD_SCRIPT_DEST)"
+	rm "$(MPD_CONF_DEST)"
 
 
 # Org-Mode
@@ -177,9 +189,9 @@ Uninstall-all-torrent: uninstall-torrent
 clean: clean-games
 
 # INSTALL
-install: install-daemon install-mail install-emms
+install: install-daemon install-mail install-emms install-mpd
 
 # UNINSTALL
 uninstall: uninstall-daemon uninstall-mail uninstall-emms
 
-uninstall-all: uninstall uninstall-all-mail uninstall-all-torrent
+uninstall-all: uninstall uninstall-all-mail uninstall-all-torrent uninstall-all-mpd
