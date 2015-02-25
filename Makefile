@@ -115,6 +115,7 @@ MPD_DEST_DIR := $(HOME)/.config/mpd
 MPD_CONF_SRC := $(MPD_SRC_DIR)/mpd.conf
 MPD_CONF_DEST := $(MPD_DEST_DIR)/mpd.conf
 MPD_CONF_DEST_EXISTS := $(wildcard $(MPD_CONF_DEST))
+MPD_CONF_FILES := database log pid state sticker sql
 
 install-mpd:
    ifeq "$(USING_INIT)" "$(SYSTEMD_COMMAND)"
@@ -125,6 +126,9 @@ install-mpd:
    endif
 
 	mkdir -p "$(MPD_DEST_DIR)"
+	for f in $(MPD_CONF_FILES); do \
+		touch "$(MPD_DEST_DIR)/$$f"; \
+	done
    ifneq "$(MPD_CONF_DEST_EXISTS)" "$(MPD_CONF_DEST)"
 	cp "$(MPD_CONF_SRC)" "$(MPD_CONF_DEST)"
    endif

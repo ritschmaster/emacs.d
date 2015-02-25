@@ -137,6 +137,8 @@
  '(org-agenda-files
    '("~/org-mode/gtd.org")))
 
+(setq org-directory "~/org-mode/")
+
 (defun gtd ()
   (interactive)
   (if (get-buffer "gtd.org")

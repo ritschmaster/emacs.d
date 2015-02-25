@@ -166,8 +166,10 @@ information."))))
                             (pgg-lookup-key recipient)
                             (and
                              (pgg-fetch-key pgg-default-keyserver-address recipient)
-                             (pgg-lookup-key recipient)) ;; we might have added some keys but not the right one ! so we need to check the local base again
-                            )))
+                             (pgg-lookup-key recipient)
+                             ) ;; we might have added some keys but not the right one ! so we need to check the local base again
+                            )
+                           ))
                      (mml-secure-message-encrypt-pgpmime))
                     (t
                      (mml-secure-message-sign-pgpmime))))))

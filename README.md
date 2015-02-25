@@ -32,7 +32,8 @@ Python, Javascript, PHP and a number of other languages.
  * A full gnus setup, easy to use (look at ~/.gnus after make install)
  * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and
    ~/.offineimap.py after make install)
- * Do not panic if you cannot send mails! Use F1-s for it!
+ * Do not panic if you cannot send mails! Use
+   <kbd>F1</kbd>+<kbd>s</kbd> for it!
 * Chat
  * A simple ERC setup for using IRC
 * Organisation
@@ -40,6 +41,9 @@ Python, Javascript, PHP and a number of other languages.
 * Multimedia
  * A full setup for EMMS, including a script to access EMMS without an
    open Emacs frame
+ * Includes a setup for the music player demon
+* File sharing
+ * A simple setup for rtorrent
 * You can fully use it without a running X server!
 
 ## Requirements
@@ -62,8 +66,16 @@ To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 Then change into it and do:
 ```bash
 make
+```
+
+To install all features shipped with this repository simply do
+afterwards:
+```bash
 make install
 ```
+
+If you want to know what features are available use the
+`print-targets.sh` script to inform yourself.
 
 Upon starting up Emacs for the first time, further third-party
 packages will be automatically downloaded and installed.
