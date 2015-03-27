@@ -37,3 +37,5 @@ srecode-map.el
 ede-projects.el
 /eshell
 /tutorial
+/lisp/init-local.el
+/lisp/init-preload-local.el

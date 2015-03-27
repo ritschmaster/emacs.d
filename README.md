@@ -32,6 +32,7 @@ Python, Javascript, PHP and a number of other languages.
  * A full gnus setup, easy to use (look at ~/.gnus after make install)
  * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and
    ~/.offineimap.py after make install)
+ * Please set the pgg-default-keyserver-address variable!
  * Do not panic if you cannot send mails! Use
    <kbd>F1</kbd>+<kbd>s</kbd> for it!
 * Chat
@@ -137,7 +138,8 @@ you can also create an `~/.emacs.d/lisp/init-preload-local.el` file.
 
 If you plan to customize things more extensively, you should probably
 just fork the repo and hack away at the config to make it your own!
->>>>>>> refs/remotes/upstream/master
+
+For key bindings look at the `~/.emacs.d/lisp/init-keys.el`!
 
 ## Similar configs
 

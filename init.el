@@ -81,10 +81,12 @@
 (require 'init-ruby-mode)
 (require 'init-rails)
 (require 'init-sql)
+;; (require 'init-cc)
 (require 'init-java)
 (require 'init-csharp)
 (require 'init-cmake)
 (require 'init-perl)
+(require 'init-octave)
 (require 'init-scheme)
 
 (require 'init-paredit)
@@ -104,6 +106,7 @@
 (require 'init-dash)
 (require 'init-ledger)
 
+(require 'init-w3m)
 (require 'init-gnus)
 (require 'init-erc)
 (load-file "~/.gnus")

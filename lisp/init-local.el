@@ -18,23 +18,6 @@
 (yas-global-mode 1)
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
 
-;; w3m
-(require-package 'w3m)
-(require 'w3m)
-; use w3m as standard browser of emacs:
-;; (setq browse-url-browser-function 'w3m-browse-url)
-;; (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-
-;; octave-mode
-(require 'octave-mod)
-(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
-
-;; ac-octave
-(require-package 'ac-octave)
-(require 'ac-octave)
-(add-to-list 'ac-sources 'ac-source-octave)
-(add-hook 'octave-mode-hook '(lambda () (ac-octave-mode-setup)))
-
 ;; auctex
 (require-package 'auctex)
 (require 'tex-mik)

@@ -100,4 +100,12 @@
 (global-set-key (kbd "<f2> t") 'remember)
 (global-set-key (kbd "<f2> n") 'notes)
 
+
+;;------------------------------------------------------------------------------
+;; dired
+;;------------------------------------------------------------------------------
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-x m") 'dired-w3m-find-file)))
+
 (provide 'init-keys)
