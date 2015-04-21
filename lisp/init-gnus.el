@@ -5,8 +5,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; offlineimap
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require-package 'offlineimap)
-(add-hook 'gnus-before-startup-hook 'offlineimap)
+(defcustom gnus-enable-offlineimap nil
+  "Non nil will enable offlineimap and starts it when gnus start."
+  :type 'boolean
+  :group 'init-gnus)
+(when gnus-enable-offlineimap
+  (require-package 'offlineimap)
+  (add-hook 'gnus-before-startup-hook 'offlineimap))
 
 (require 'netrc)
 (defun offlineimap-get-password (host port login)
@@ -115,6 +120,32 @@ information."))))
     (change-smtp))
   (funcall (symbol-value '%smtpmail-via-smtp) recipient
            smtpmail-text-buffer))
+
+;;----------------------------------------------------------------------------
+;; POP3 setup
+;;----------------------------------------------------------------------------
+(defun set-mail-sources-passwords (sources)
+  "Gets the passwords for a list of lists of users (the parameter sources - should be used like mail-sources excluding the field :password) from the ~/.authinfo.gpg file"
+  (let* ((netrc (netrc-parse "~/.authinfo.gpg")))
+    (dolist (mail-source sources)
+              (print (lax-plist-get (rest mail-source) :user))
+      (dolist (entry netrc)
+
+        (when (and
+             (string= (cdr (elt entry 0))
+                      (lax-plist-get (rest mail-source) :server))
+             (string= (cdr (elt entry 1))
+                      (lax-plist-get (rest mail-source) :user))
+             (string= (cdr (elt entry 3))
+                      (number-to-string (lax-plist-get (rest mail-source) :port)))
+             )
+             (lax-plist-put (rest mail-source) :password (cdr (elt entry 2)))))))
+  (setq mail-sources sources))
+
+(add-hook 'gnus-before-startup-hook
+          (lambda ()
+            (when (boundp 'mail-sources)
+              (set-mail-sources-passwords mail-sources))))
 
 ;;----------------------------------------------------------------------------
 ;; PGG Encryption

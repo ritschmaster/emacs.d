@@ -81,7 +81,7 @@
 (require 'init-ruby-mode)
 (require 'init-rails)
 (require 'init-sql)
-;; (require 'init-cc)
+(require 'init-cc)
 (require 'init-java)
 (require 'init-csharp)
 (require 'init-cmake)

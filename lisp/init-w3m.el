@@ -9,7 +9,7 @@
    (w3m-copy-buffer nil nil nil t)
    (w3m-browse-url url))
 
-(setq browse-url-browser-function 'w3m-browse-url-new-tab)
+; (setq browse-url-browser-function 'w3m-browse-url-new-tab)
 (setq w3m-default-display-inline-images t)
 
 (defun dired-w3m-find-file ()

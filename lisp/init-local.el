@@ -43,9 +43,6 @@
 ;; (setq-mode-local c++-mode semanticdb-find-default-throttle
 ;;                       '(project local unloaded system recursive))
 
-;; ; semantic autocomplete integration
-;; (add-to-list 'ac-sources 'ac-source-semantic)
-
 ;; ; enable some modes
 ;; (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
 ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)

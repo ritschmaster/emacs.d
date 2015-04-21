@@ -20,7 +20,16 @@
 (setq gnus-secondary-select-methods '((nnmaildir "imapuser2"
                                                  (directory "~/Mail/imapuser1")
                                                  (directory-files nnheader-directory-files-safe)
-                                                 (get-new-mail nil))))
+                                                 (get-new-mail nil))
+                                      (nnml "")))
+
+(setq mail-sources '((pop :server "pop.yourserver.com"
+                                   :port 995
+                                   :user "youruser"
+                                   :stream ssl)))
+
+(when (fboundp 'set-mail-sources-passwords)
+  (set-mail-sources-passwords mail-sources))
 
 (setq erc-nick "yourircnick"
       erc-server "yourircserver"
