@@ -162,4 +162,10 @@
         ("Note" ?n "\n* %^{topic} %T \n%i%?\n" "~/org-mode/notes.org")
         ("WordofDay" ?w "\n* %^{topic} \n%i%?\n" "~/org-mode/wotd.org")))
 
+;;------------------------------------------------------------------------------
+;; Add auto-complete support for org-mode
+;;------------------------------------------------------------------------------
+(require-package 'org-ac)
+(org-ac/config-default)
+
 (provide 'init-org)

@@ -183,30 +183,29 @@ information."))))
   :group 'init-gnus)
 
 ;; Automatic signing/encryption if possible
-(add-hook
- 'message-send-hook
- (lambda ()
-   (cond ((message-mail-p)
-          (let ((toheader (message-fetch-field "To")))
-            (let ((recipient (nth 1 (mail-extract-address-components toheader nil))))
-              (message recipient)
-              (cond ((and
-                      gnus-enable-automatic-message-encryption
-                      (and (not (null recipient))
-                           (or
-                            (pgg-lookup-key recipient)
-                            (and
-                             (pgg-fetch-key pgg-default-keyserver-address recipient)
-                             (pgg-lookup-key recipient)
-                             ) ;; we might have added some keys but not the right one ! so we need to check the local base again
-                            )
-                           ))
-                     (mml-secure-message-encrypt-pgpmime))
-                    (t
-                     (mml-secure-message-sign-pgpmime))))))
-         ((message-news-p)
-          (mml-secure-message-sign-pgpmime)))))
-
+(setq
+ message-send-hook
+ '((lambda ()
+     (cond ((message-mail-p)
+            (let ((toheader (message-fetch-field "To")))
+              (let ((recipient (nth 1 (mail-extract-address-components toheader nil))))
+                (message recipient)
+                (cond ((and
+                        gnus-enable-automatic-message-encryption
+                        (and (not (null recipient))
+                             (or
+                              (pgg-lookup-key recipient)
+                              (and
+                               (pgg-fetch-key pgg-default-keyserver-address recipient)
+                               (pgg-lookup-key recipient)
+                               ) ;; we might have added some keys but not the right one ! so we need to check the local base again
+                              )
+                             ))
+                       (mml-secure-message-encrypt-pgpmime))
+                      (t
+                       (mml-secure-message-sign-pgpmime))))))
+           ((message-news-p)
+            (mml-secure-message-sign-pgpmime))))))
 
 (provide 'init-gnus)
 ;;; init-gnus ends here

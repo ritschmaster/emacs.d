@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: glib interface declaration
+# key: gifhdr
+# --
+typedef struct _$1 $1;
+
+typedef struct
+{
+  GTypeInterface parent;
+
+} $2;
+
+#define $3_TYPE_$4 ($5_get_type ())
+#define $3_$4(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), $3_TYPE_$4, $1))
+#define $3_IS_$4(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), $3_TYPE_$4))
+#define $3_$4_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE ((inst), $3_TYPE_$4, $2))

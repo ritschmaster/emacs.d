@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: glib interface implementation
+# key: gifc
+# --
+G_DEFINE_INTERFACE($1, $2, 0);
+
+static void
+$2_default_init(gpointer g_class)
+{
+}

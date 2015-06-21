@@ -39,3 +39,4 @@ ede-projects.el
 /tutorial
 /lisp/init-local.el
 /lisp/init-preload-local.el
+/site-lisp/

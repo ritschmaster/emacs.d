@@ -25,6 +25,8 @@
 (global-set-key (kbd "<f2> w") 'w3m)
 (global-set-key (kbd "<f2> S") 'w3m-search)
 (global-set-key (kbd "<f2> U") 'w3m-goto-url)
+(define-key w3m-mode-map (kbd "C-c C-u") 'w3m-browse-url-new-tab)
+(define-key w3m-mode-map (kbd "C-c C-y") 'w3m-yt-view)
 
 ;;----------------------------------------------------------------------------
 ;; ispell
@@ -35,10 +37,8 @@
 ;;----------------------------------------------------------------------------
 ;; c-mode & c++-mode
 ;;----------------------------------------------------------------------------
-(add-hook 'c-mode-hook (lambda ()
-                         (local-set-key (kbd "<f2> <f4>") 'ff-get-other-file)))
-(add-hook 'c++-mode-hook (lambda ()
-                           (local-set-key (kbd "<f2> <f4>") 'ff-get-other-file)))
+(define-key c-mode-map (kbd "<f2> <f4>") 'ff-get-other-file)
+(define-key c++-mode-map (kbd "<f2> <f4>") 'ff-get-other-file)
 
 ;; ;;----------------------------------------------------------------------------
 ;; ;; ECB
@@ -104,8 +104,6 @@
 ;;------------------------------------------------------------------------------
 ;; dired
 ;;------------------------------------------------------------------------------
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-x m") 'dired-w3m-find-file)))
+(define-key dired-mode-map (kbd "C-x m") 'dired-w3m-find-file)
 
 (provide 'init-keys)
