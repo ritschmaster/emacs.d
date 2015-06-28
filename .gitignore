@@ -40,3 +40,6 @@ ede-projects.el
 /lisp/init-local.el
 /lisp/init-preload-local.el
 /site-lisp/
+/request/
+/recentf
+/ido.last
