@@ -184,18 +184,32 @@ install-torrent:
 
 uninstall-torrent:
 
-Uninstall-all-torrent: uninstall-torrent
+uninstall-all-torrent: uninstall-torrent
 	rm "$(TORRENT_DEST_RC)"
 	rm -r "$(TORRENT_DEST_SESSION_DIR)"
 
+# JDEE
+JDEE_SERVER_URL = https://github.com/jdee-emacs/jdee-server/archive/master.zip
+JDEE_ZIP_FILE = master.zip
+JDEE_ZIP_DIR_ORIG = jdee-server-master
+JDEE_ZIP_DIR = jdee-server
+install-jdee:
+	wget "$(JDEE_SERVER_URL)"
+	unzip $(JDEE_ZIP_FILE)
+	mv $(JDEE_ZIP_DIR_ORIG) $(JDEE_ZIP_DIR)
+	rm -rf "$(JDEE_ZIP_FILE)"
+	cd $(JDEE_ZIP_DIR) && mvn assembly:assembly
+
+uninstall-jdee:
+	rm -rf "$(JDEE_ZIP_DIR)"
 
 # CLEAN
 clean: clean-games
 
 # INSTALL
-install: install-daemon install-mail install-emms install-mpd
+install: install-daemon install-mail install-emms install-mpd install-jdee
 
 # UNINSTALL
-uninstall: uninstall-daemon uninstall-mail uninstall-emms
+uninstall: uninstall-daemon uninstall-mail uninstall-emms uninstall-jdee
 
 uninstall-all: uninstall uninstall-all-mail uninstall-all-torrent uninstall-all-mpd

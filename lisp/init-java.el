@@ -1,3 +1,7 @@
+;;; package -- Summary
+;;; Commentary:
+;;; Code:
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; malabar-mode for emacs only java development
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -9,15 +13,22 @@
 ;; (defun start-malabar ()
 ;;   (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode)))
 
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; emacs-eclim for java development with Emacs + Eclipse
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (require-package 'emacs-eclim)
+;; (defun start-eclim ()
+;;   (interactive)
+;;   (require 'eclim)
+;;   (require 'eclimd)
+;;   (require 'ac-emacs-eclim-source)
+;;   (ac-emacs-eclim-config))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; emacs-eclim for java development with Emacs + Eclipse
+;; JDEE
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require-package 'emacs-eclim)
-(defun start-eclim ()
-  (interactive)
-  (require 'eclim)
-  (require 'eclimd)
-  (require 'ac-emacs-eclim-source)
-  (ac-emacs-eclim-config))
+(require-package 'jdee)
+(setq jdee-server-dir "~/.emacs.d/jdee-server/target")
 
 (provide 'init-java)
+;;; init-java.el ends here
