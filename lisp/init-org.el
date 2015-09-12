@@ -168,4 +168,9 @@
 (require-package 'org-ac)
 (org-ac/config-default)
 
+;;------------------------------------------------------------------------------
+;; Enable tracking habits
+;;------------------------------------------------------------------------------
+(add-to-list 'org-modules "org-habit")
+
 (provide 'init-org)

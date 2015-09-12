@@ -107,6 +107,8 @@
 
 ;; (ad-activate 'compilation-start)
 
+(require-package 'bookmark+)
+
 
 (display-time)
 
