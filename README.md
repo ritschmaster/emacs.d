@@ -46,6 +46,9 @@ Python, Javascript, PHP and a number of other languages.
 * File sharing
  * A simple setup for rtorrent
 * You can fully use it without a running X server!
+* Daemon setup
+ * systemd user level daemon
+ * sysvinit daemon shell script for every user
 
 ## Requirements
 
@@ -58,7 +61,7 @@ Python, Javascript, PHP and a number of other languages.
   provide on-the-fly syntax checking.
 
 ## Installation
-
+### General
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 `init.el` contained in this repo ends up at `~/.emacs.d/init.el`:
 
@@ -88,6 +91,40 @@ use.
 (setq emms-player-list '(emms-player-mplayer)) ; if you use mplayer
 (setq emms-player-list '(emms-player-mpd)) ; if you use mpd
 ```
+
+### The daemon
+#### systemd user level daemon
+Pros:
+* Does not need root privileges to install
+* Very simple to install
+
+Cons:
+* Starts emacs on login - this costs much time
+* Needs to be installed for EVERY user
+
+```bash
+make install-systemd-user-daemon
+systemctl --user enable emacs
+systemctl --user start emacs
+```
+
+#### sysvinit daemon
+Pros:
+* Very fast startup (on start not on login)
+* Adding a new emacs daemon user is unbeatable simple
+
+Cons:
+* Needs root privileges to install
+* Not that simple to install
+
+```bash
+su
+export THEUSER="your_non_root_user_name another_user_if_you_want_to" # optional
+export THEUSER="or_only_one_user"
+make install-sysvinit-daemon
+systemctl enable emacs # if you have systemd installed
+```
+
 
 ## Uninstallation
 

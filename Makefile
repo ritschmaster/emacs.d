@@ -17,15 +17,24 @@ all: setup-games setup-emms
 DAEMONSCRIPTS_DIR := $(SRC_DIR)/daemonscripts
 SYSTEMD_SCRIPT := $(DAEMONSCRIPTS_DIR)/emacs.service
 
-install-daemon:
-   ifeq "$(USING_INIT)" "$(SYSTEMD_COMMAND)"
+SYSVINIT_DEST_DIR := /etc/init.d
+SYSVINIT_SCRIPT_NAME := emacs
+
+install-systemd-user-daemon:
 	mkdir -p "$(SYSTEMD_PATH)"
 	cp "$(SYSTEMD_SCRIPT)" "$(SYSTEMD_PATH)/"
-   endif
 
-uninstall-daemon:
+uninstall-systemd-user-daemon:
 	rm "$(SYSTEMD_PATH)"/$(shell echo "$(SYSTEMD_SCRIPT)" | cut -d'/' -f2)
 
+install-sysvinit-daemon:
+	cp $(DAEMONSCRIPTS_DIR)/$(SYSVINIT_SCRIPT_NAME) $(SYSVINIT_DEST_DIR)/$(SYSVINIT_SCRIPT_NAME)
+	chmod +x $(SYSVINIT_DEST_DIR)/$(SYSVINIT_SCRIPT_NAME)
+	sed -i "s/USERS=\"\"/USERS=\"$(THEUSER)\"/g" $(SYSVINIT_DEST_DIR)/$(SYSVINIT_SCRIPT_NAME)
+
+uninstall-sysvinit-daemon:
+	service $(SYSVINIT_SCRIPT_NAME) stop
+	rm $(SYSVINIT_DEST_DIR)/$(SYSVINIT_SCRIPT_NAME)
 
 # MAIL
 MAIL_SRC_DIR := $(SRC_DIR)/mail
@@ -207,7 +216,7 @@ uninstall-jdee:
 clean: clean-games
 
 # INSTALL
-install: install-daemon install-mail install-emms install-mpd install-jdee
+install: install-mail install-emms install-mpd install-jdee
 
 # UNINSTALL
 uninstall: uninstall-daemon uninstall-mail uninstall-emms uninstall-jdee

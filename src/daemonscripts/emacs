@@ -1,0 +1,71 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          emacs
+# Required-Start:    $all
+# Required-Stop:     $
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Launch Emacs
+# Description:       Launch Emacs with start-stop-daemon
+### END INIT INFO
+NAME=emacs
+USERS=""
+
+. /lib/lsb/init-functions
+
+emacs_start()
+{
+    echo -n "Starting Lisp Emacs Server process..."
+    echo ""
+    for user in $USERS; do
+        su - $user -c 'emacs --daemon'
+    done
+}
+
+emacs_stop ()
+{
+    echo -n "Stopping Lisp Emacs Server process..."
+    echo ""
+    for user in $USERS; do
+        su - $user -c 'emacsclient --eval "(server-shutdown)"'
+    done
+}
+
+emacs_usage()
+{
+    echo "Usage: /etc/init.d/emacs {start|stop|restart|status}"
+    exit 1
+}
+
+# emacs_status()
+# {
+#     for user in $USERS; do
+#         status_of_proc -p "/home/$user/run/$NAME.pid" "$NAME" $NAME
+#     done
+# }
+
+case "$1" in
+    start)
+        emacs_start
+        ;;
+
+    stop)
+        emacs_stop
+        ;;
+
+    restart)
+        emacs_stop
+        emacs_start
+        ;;
+
+    status)
+        #emacs_status
+        ;;
+
+    *)
+        emacs_usage
+        ;;
+
+esac
+
+exit 0
