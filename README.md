@@ -116,6 +116,7 @@ Pros:
 Cons:
 * Needs root privileges to install
 * Not that simple to install
+* Does not work if you use an encrypted home folder
 
 ```bash
 su
