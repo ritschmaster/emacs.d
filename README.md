@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/purcell/emacs.d.png?branch=master)](https://travis-ci.org/purcell/emacs.d)
+
 # A reasonable Emacs config
 
 This is my emacs configuration tree, continually used and tweaked
@@ -12,20 +14,22 @@ config adds improved defaults and extended support for the following:
 * Ruby / Ruby on Rails
 * CSS / LESS / SASS / SCSS
 * HAML / Markdown / Textile / ERB
-* Clojure (via nrepl)
+* Clojure (with Cider and nRepl)
 * Javascript / Coffeescript
 * Python
 * PHP
 * Haskell
+* Elm
 * Erlang
 * Common Lisp (with Slime)
 * Perl
 * Bash
 
 In particular, there's a nice config for *tab autocompletion*, and
-flycheck is used to immediately highlight syntax errors in Ruby, HAML,
+`flycheck` is used to immediately highlight syntax errors in Ruby, HAML,
 Python, Javascript, PHP and a number of other languages.
 
+<<<<<<< HEAD
 ## Further features
 
 * Mail
@@ -51,14 +55,26 @@ Python, Javascript, PHP and a number of other languages.
  * sysvinit daemon shell script for every user
 
 ## Requirements
+=======
+## Supported Emacs versions
 
-* Emacs 23 or greater (note that Emacs 24 is required for some
-  functionality, and will likely become the minimum required version
-  some time soon.)
-* To make the most of the programming language-specific support in
-  this config, further programs will likely be required, particularly
-  those that [flycheck](https://github.com/flycheck/flycheck) uses to
-  provide on-the-fly syntax checking.
+The config should run on Emacs 23.3 or greater and is designed to
+degrade smoothly - see the Travis build - but note that Emacs 24 and
+above is required for an increasing number of key packages, including
+`magit` and `flycheck`, so to get full you should use the latest Emacs
+version available to you.
+
+Some Windows users might need to follow
+[these instructions](http://xn--9dbdkw.se/diary/how_to_enable_GnuTLS_for_Emacs_24_on_Windows/index.en.html)
+to get TLS (ie. SSL) support included in their Emacs.
+>>>>>>> ba4a2cab093550d24e52cc2e081d4b21e1774ca0
+
+## Other requirements
+
+To make the most of the programming language-specific support in this
+config, further programs will likely be required, particularly those
+that [flycheck](https://github.com/flycheck/flycheck) uses to provide
+on-the-fly syntax checking.
 
 ## Installation
 ### General
@@ -82,7 +98,11 @@ If you want to know what features are available use the
 `print-targets.sh` script to inform yourself.
 
 Upon starting up Emacs for the first time, further third-party
-packages will be automatically downloaded and installed.
+packages will be automatically downloaded and installed. If you
+encounter any errors at that stage, try restarting Emacs, and possibly
+running `M-x package-refresh-contents` before doing so.
+
+
 
 If you like to use EMMS you have to specify the player you want to
 use.
@@ -181,8 +201,12 @@ For key bindings look at the `~/.emacs.d/lisp/init-keys.el`!
 
 ## Similar configs
 
+<<<<<<< HEAD
 You might also want to check out `emacs-starter-kit` and
 `emacs-prelude`.
+=======
+You might also want to check out `emacs-starter-kit` and `prelude`.
+>>>>>>> ba4a2cab093550d24e52cc2e081d4b21e1774ca0
 
 ## Support / issues
 

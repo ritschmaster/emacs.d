@@ -31,6 +31,7 @@ cookies
 /emms/
 /.smex-items
 /image-dired/
+<<<<<<< HEAD
 /scores
 /semanticdb
 srecode-map.el
@@ -46,3 +47,13 @@ ede-projects.el
 /custom.el.before_ecb_2.40
 /jdee-server/
 /abbrev_defs
+=======
+/eshell
+/.cask/
+/.sx/
+/org-clock-save.el
+/ditaa*.jar
+/ido.last
+/recentf
+/viper
+>>>>>>> ba4a2cab093550d24e52cc2e081d4b21e1774ca0

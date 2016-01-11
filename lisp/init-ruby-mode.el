@@ -10,7 +10,6 @@
 (setq ruby-use-encoding-map nil)
 
 (after-load 'ruby-mode
-  (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
   (define-key ruby-mode-map (kbd "TAB") 'indent-for-tab-command)
 
   ;; Stupidly the non-bundled ruby-mode isn't a derived mode of
@@ -24,6 +23,9 @@
 
 ;; TODO: hippie-expand ignoring : for names in ruby-mode
 ;; TODO: hippie-expand adaptor for auto-complete sources
+
+(after-load 'page-break-lines
+  (push 'ruby-mode page-break-lines-modes))
 
 
 ;;; Inferior ruby
@@ -43,8 +45,10 @@
 (after-load 'ruby-mode
   (let ((m ruby-mode-map))
     (define-key m [S-f7] 'ruby-compilation-this-buffer)
-    (define-key m [f7] 'ruby-compilation-this-test)
-    (define-key m [f6] 'recompile)))
+    (define-key m [f7] 'ruby-compilation-this-test)))
+
+(after-load 'ruby-compilation
+  (defalias 'rake 'ruby-compilation-rake))
 
 
 
@@ -52,11 +56,26 @@
 (require-package 'robe)
 (after-load 'ruby-mode
   (add-hook 'ruby-mode-hook 'robe-mode))
+
+(defun sanityinc/maybe-enable-robe-ac ()
+  "Enable/disable robe auto-complete source as necessary."
+  (if robe-mode
+      (progn
+        (add-hook 'ac-sources 'ac-source-robe nil t)
+        (set-auto-complete-as-completion-at-point-function))
+    (remove-hook 'ac-sources 'ac-source-robe)))
+
 (after-load 'robe
-  (add-hook 'robe-mode-hook
-            (lambda ()
-              (add-to-list 'ac-sources 'ac-source-robe)
-              (set-auto-complete-as-completion-at-point-function))))
+  (add-hook 'robe-mode-hook 'sanityinc/maybe-enable-robe-ac))
+
+
+
+;; Customise highlight-symbol to not highlight do/end/class/def etc.
+(defun sanityinc/suppress-ruby-mode-keyword-highlights ()
+  "Suppress highlight-symbol for do/end etc."
+  (set (make-local-variable 'highlight-symbol-ignore-list)
+       (list (concat "\\_<" (regexp-opt '("do" "end")) "\\_>"))))
+(add-hook 'ruby-mode-hook 'sanityinc/suppress-ruby-mode-keyword-highlights)
 
 
 
