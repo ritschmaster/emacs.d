@@ -74,10 +74,12 @@
 
 (defun set-smtp (mech server port user password)
   "Set related SMTP variables for supplied parameters."
-  (setq smtpmail-smtp-server server smtpmail-smtp-service port
+  (setq smtpmail-smtp-server server
+        smtpmail-smtp-service port
         smtpmail-auth-credentials (list (list server port user
-                                              password)) smtpmail-auth-supported (list mech)
-                                              smtpmail-starttls-credentials nil)
+                                              password))
+        smtpmail-auth-supported (list mech)
+        smtpmail-starttls-credentials nil)
   (message "Setting SMTP server to `%s:%s' for user `%s'."
            server port user))
 
@@ -86,11 +88,13 @@
   "Set related SMTP and SSL variables for supplied parameters."
   (setq starttls-use-gnutls t
         starttls-gnutls-program "gnutls-cli"
-        starttls-extra-arguments nil smtpmail-smtp-server server
+        starttls-extra-arguments nil
+        smtpmail-smtp-server server
         smtpmail-smtp-service port
         smtpmail-auth-credentials (list (list server port user
-                                              password)) smtpmail-starttls-credentials (list (list
-                                                                                              server port key cert)))
+                                              password))
+        smtpmail-starttls-credentials (list (list
+                                             server port key cert)))
   (message
    "Setting SMTP server to `%s:%s' for user `%s'. (SSL
 enabled.)" server port user))
