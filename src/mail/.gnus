@@ -1,12 +1,11 @@
 ;;; package --- Summary
 ;;; Commentary:
 ;;; This file should contain your login data for one or several email accounts and your irc username
-(setq user-mail-address "yourname@yourdomain.somewhere" ; the default mail address to send from
-      user-full-name "yourname")         ; set "from" field in gnus
 
-; smtp accounts for gnus:
-(defvar smtp-accounts '((ssl "yourname@yourdomain.somewhere" "smtp.yourdomain.somewhere" 587 "yourname@yourdomain.somewhere" nil)
-                        (ssl "yourname@otherdomain.somewhereelse" "smtp.otherdomain.somewhereelse" 587 "yourname@otherdomain.somewhereelse" nil)))
+(defvar smtp-accounts nil)
+(setq smtp-accounts
+      '((ssl "yourname@yourdomain.somewhere" "smtp.yourdomain.somewhere" 587 "yourname@yourdomain.somewhere" nil)
+        (ssl "yourname@otherdomain.somewhereelse" "smtp.otherdomain.somewhereelse" 587 "yourname@otherdomain.somewhereelse" nil)))
 
 ; the following enables queing the mail and send all collected
 ; the mails can then be sent with smtpmail-send-queued-mail
@@ -24,12 +23,9 @@
                                       (nnml "")))
 
 (setq mail-sources '((pop :server "pop.yourserver.com"
-                                   :port 995
-                                   :user "youruser"
-                                   :stream ssl)))
-
-(when (fboundp 'set-mail-sources-passwords)
-  (set-mail-sources-passwords mail-sources))
+                          :port 995
+                          :user "youruser"
+                          :stream ssl)))
 
 (setq erc-nick "yourircnick"
       erc-server "yourircserver"

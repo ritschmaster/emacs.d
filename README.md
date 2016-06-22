@@ -29,7 +29,6 @@ In particular, there's a nice config for *tab autocompletion*, and
 `flycheck` is used to immediately highlight syntax errors in Ruby, HAML,
 Python, Javascript, PHP and a number of other languages.
 
-<<<<<<< HEAD
 ## Further features
 
 * Mail
@@ -201,12 +200,7 @@ For key bindings look at the `~/.emacs.d/lisp/init-keys.el`!
 
 ## Similar configs
 
-<<<<<<< HEAD
-You might also want to check out `emacs-starter-kit` and
-`emacs-prelude`.
-=======
 You might also want to check out `emacs-starter-kit` and `prelude`.
->>>>>>> ba4a2cab093550d24e52cc2e081d4b21e1774ca0
 
 ## Support / issues
 
