@@ -37,6 +37,22 @@
 ;;               "/gtk.h"))
 
 ;;------------------------------------------------------------------------------
+;; Use SDL2 Headers:
+;;------------------------------------------------------------------------------
+(defcustom c-semantic-sdl2-include-directory "/usr/include/sdl2"
+  "The path to the SDL2 include directory. It should NOT be terminated with a slash."
+  :type '(string)
+  :group 'init-cc)
+;; (add-to-list 'auto-mode-alist
+;;              '(c-semantic-gtk3-include-directory . c-mode))
+(semantic-add-system-include c-semantic-sdl2-include-directory 'c-mode)
+(semantic-add-system-include c-semantic-sdl2-include-directory 'c++-mode)
+;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file
+;;              (concat
+;;               c-semantic-gtk3-include-directory
+;;               "/gtk.h"))
+
+;;------------------------------------------------------------------------------
 ;;------------------------------------------------------------------------------
 ;; C++ Setup
 ;;------------------------------------------------------------------------------

@@ -3,6 +3,7 @@ EMACS_HOME = $(HOME)/.emacs.d
 CURRENT_USER = $(shell whoami)
 INSTALL_SRC_DIR = $(shell pwd)
 SRC_DIR := $(INSTALL_SRC_DIR)/src
+LOCAL_EMACS_LIBS_DIR := $(INSTALL_SRC_DIR)/site-lisp
 
 DEST_BIN_DIR := $(HOME)/bin
 
@@ -50,6 +51,9 @@ OFFLINEIMAPPY_SRC := $(MAIL_SRC_DIR)/.offlineimap.py
 OFFLINEIMAPPY_DEST := $(HOME)/.offlineimap.py
 OFFLINEIMAPPY_DEST_EXISTS := $(wildcard $(OFFLINEIMAPPY_DEST))
 
+ORG_MIME_LINK := http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/org-mime.el;hb=HEAD
+ORG_MIME_DEST := $(LOCAL_EMACS_LIBS_DIR)/org-mime.el
+
 install-mail:
    ifneq "$(DOTGNUS_DEST_EXISTS)" "$(DOTGNUS_DEST)"
 	cp "$(DOTGNUS_SRC)" "$(DOTGNUS_DEST)"
@@ -60,6 +64,7 @@ install-mail:
    ifneq "$(OFFLINEIMAPPY_DEST_EXISTS)" "$(OFFLINEIMAPPY_DEST)"
 	cp "$(OFFLINEIMAPPY_SRC)" "$(OFFLINEIMAPPY_DEST)"
    endif
+	wget -O $(ORG_MIME_DEST) $(ORG_MIME_LINK)
 
 uninstall-mail:
 	rm "$(DOTGNUS_DEST)"

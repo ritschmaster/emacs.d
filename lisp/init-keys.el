@@ -40,19 +40,19 @@
 (define-key c-mode-map (kbd "<f2> <f4>") 'ff-get-other-file)
 (define-key c++-mode-map (kbd "<f2> <f4>") 'ff-get-other-file)
 
-;; ;;----------------------------------------------------------------------------
-;; ;; ECB
-;; ;;----------------------------------------------------------------------------
-;; ;; quick navigation between ecb windows
-;; (global-set-key (kbd "C-*") 'ecb-goto-window-edit)
-;; (global-set-key (kbd "C-+") 'ecb-goto-window-directories)
-;; (global-set-key (kbd "C-#") 'ecb-goto-window-sources)
-;; (global-set-key (kbd "C-@") 'ecb-goto-window-methods)
-;; (global-set-key (kbd "C-!") 'ecb-goto-window-compilation)
+;;----------------------------------------------------------------------------
+;; ECB
+;;----------------------------------------------------------------------------
+;; quick navigation between ecb windows
+;; (define-key ecb-mode-map (kbd "C-*") 'ecb-goto-window-edit1)
+;; (define-key ecb-mode-map (kbd "C-+") 'ecb-goto-window-directories)
+;; (define-key ecb-mode-map (kbd "C-#") 'ecb-goto-window-sources)
+;; (define-key ecb-mode-map (kbd "C-@") 'ecb-goto-window-methods)
+;; (define-key ecb-mode-map (kbd "C-!") 'ecb-goto-window-compilation)
 
-;; show/hide ecb window
-(global-set-key (kbd "C-x C-;") 'ecb-show-ecb-windows)
-(global-set-key (kbd "C-x C-'") 'ecb-hide-ecb-windows)
+;; ;; show/hide ecb window
+;; (global-set-key (kbd "C-x C-;") 'ecb-show-ecb-windows)
+;; (global-set-key (kbd "C-x C-'") 'ecb-hide-ecb-windows)
 
 
 ;;----------------------------------------------------------------------------
@@ -112,5 +112,12 @@
 ;; dired
 ;;------------------------------------------------------------------------------
 (define-key dired-mode-map (kbd "C-x m") 'dired-w3m-find-file)
+
+;;------------------------------------------------------------------------------
+;; message-mode
+;;------------------------------------------------------------------------------
+(add-hook 'message-mode-hook
+          (lambda ()
+            (local-set-key "C-c M-o" 'org-mime-htmlize)))
 
 (provide 'init-keys)

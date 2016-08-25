@@ -172,9 +172,6 @@ information."))))
 ;; Here we make button for the multipart
 (setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
 
-;; Automatically sign when sending mails
-(add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
-
 ;; Tells Gnus to inline the part
 (add-to-list 'mm-inlined-types "application/pgp$")
 
@@ -196,8 +193,8 @@ information."))))
   :group 'init-gnus)
 
 ;; Automatic signing/encryption if possible
-(add-to-list
- 'message-send-hook
+(setq
+ message-send-hook
  (lambda ()
    (cond ((message-mail-p)
           (let ((toheader (message-fetch-field "To")))
@@ -205,14 +202,15 @@ information."))))
               (message recipient)
               (cond ((and
                       gnus-enable-automatic-message-encryption
-                      (and (not (null recipient))
-                           (or
-                            (pgg-lookup-key recipient)
-                            (and
-                             (pgg-fetch-key pgg-default-keyserver-address recipient)
-                             (pgg-lookup-key recipient)
-                             ) ;; we might have added some keys but not the right one ! so we need to check the local base again
-                            )
+                      (and recipient
+                           (pgg-lookup-key recipient)
+                           ;; (or
+                           ;;  (pgg-lookup-key recipient)
+                           ;;  (and
+                           ;;   (pgg-fetch-key pgg-default-keyserver-address recipient)
+                           ;;   (pgg-lookup-key recipient)
+                           ;;   ) ;; we might have added some keys but not the right one ! so we need to check the local base again
+                           ;;  )
                            ))
                      (mml-secure-message-encrypt-pgpmime))
                     (t

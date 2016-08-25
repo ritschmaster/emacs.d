@@ -106,6 +106,8 @@
 (require 'init-octave)
 (require 'init-scheme)
 
+;; (require 'init-ecb)
+
 (require 'init-paredit)
 (require 'init-lisp)
 (require 'init-slime)
