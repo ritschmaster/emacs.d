@@ -6,6 +6,21 @@
   :keys ("M-m"))
 
 ;;----------------------------------------------------------------------------
+;; Add which-key
+;;----------------------------------------------------------------------------
+(require-package 'which-key)
+(which-key-mode)
+(which-key-add-key-based-replacements
+  "M-m a"    "Applications"
+  "M-m a b"    "Browser"
+  "M-m a m"    "Music"
+  "M-m a o"    "org-mode"
+  "M-m b"    "Buffer"
+  "M-m c"    "Code"
+  "M-m m"    "Major mode"
+  "M-m s"    "Spellchecking")
+
+;;----------------------------------------------------------------------------
 ;; Buffer specific commands - starting with "b"
 ;;----------------------------------------------------------------------------
 (define-key emacs-d-default-map (kbd "b f") 'rename-this-file-and-buffer)
