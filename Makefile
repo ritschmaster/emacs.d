@@ -12,7 +12,7 @@ SYSTEMD_PATH := $(HOME)/.config/systemd/user
 
 USING_INIT := $(shell { type "$(SYSTEMD_COMMAND)"; } 2>/dev/null | cut -d' ' -f1)
 
-all: setup-games setup-emms
+all: setup-games setup-emms install-jdee install-org-mime install-namazu
 
 # Collect data about the used init-system
 DAEMONSCRIPTS_DIR := $(SRC_DIR)/daemonscripts
@@ -51,9 +51,6 @@ OFFLINEIMAPPY_SRC := $(MAIL_SRC_DIR)/.offlineimap.py
 OFFLINEIMAPPY_DEST := $(HOME)/.offlineimap.py
 OFFLINEIMAPPY_DEST_EXISTS := $(wildcard $(OFFLINEIMAPPY_DEST))
 
-ORG_MIME_LINK := http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/org-mime.el;hb=HEAD
-ORG_MIME_DEST := $(LOCAL_EMACS_LIBS_DIR)/org-mime.el
-
 install-mail:
    ifneq "$(DOTGNUS_DEST_EXISTS)" "$(DOTGNUS_DEST)"
 	cp "$(DOTGNUS_SRC)" "$(DOTGNUS_DEST)"
@@ -64,7 +61,6 @@ install-mail:
    ifneq "$(OFFLINEIMAPPY_DEST_EXISTS)" "$(OFFLINEIMAPPY_DEST)"
 	cp "$(OFFLINEIMAPPY_SRC)" "$(OFFLINEIMAPPY_DEST)"
    endif
-	wget -O $(ORG_MIME_DEST) $(ORG_MIME_LINK)
 
 uninstall-mail:
 	rm "$(DOTGNUS_DEST)"
@@ -118,6 +114,31 @@ install-emms:
 uninstall-emms:
 	rm "$(EMMS_REMOTE_DEST)"
 
+# org-mime
+ORG_MIME_URL := https://github.com/redguardtoo/org-mime/archive/master.zip
+ORG_MIME_DEST_DIR := $(LOCAL_EMACS_LIBS_DIR)/org-mime
+ORG_MIME_DEST_FILE := $(ORG_MIME_DEST_DIR)/org-mime.el
+ORG_MIME_ZIP_FILE = master.zip
+ORG_MIME_ZIP_DIR = org-mime-master
+install-org-mime:
+	wget "$(ORG_MIME_URL)"
+	unzip $(ORG_MIME_ZIP_FILE)
+	mv $(ORG_MIME_ZIP_DIR) $(ORG_MIME_DEST_DIR)
+	rm -rf "$(ORG_MIME_ZIP_FILE)"
+
+uninstall-org-mime:
+	rm -rf $(ORG_MIME_DEST_DIR)
+
+# # namazu
+# NAMAZU_LINK := http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/namazu.el;hb=HEAD
+# NAMAZU_DEST_DIR := $(LOCAL_EMACS_LIBS_DIR)/namazu
+# NAMAZU_DEST_FILE := $(NAMAZU_DEST_DIR)/namazu.el
+
+# install-namazu:
+#	wget -O $(NAMAZU_DEST) $(NAMAZU_LINK)
+
+# uninstall-namazu:
+#	rm -rf $(NAMAZU_DEST_DIR)
 
 # MPD daemon script
 MPD_SYSTEMD_SCRIPT_SRC := $(DAEMONSCRIPTS_DIR)/mpd.service
@@ -218,7 +239,7 @@ uninstall-jdee:
 	rm -rf "$(JDEE_ZIP_DIR)"
 
 # CLEAN
-clean: clean-games
+clean: clean-games uninstall-org-mime uninstall-jdee
 
 # INSTALL
 install: install-mail install-emms install-mpd install-jdee
