@@ -71,5 +71,6 @@ ignored: use `custom-enabled-themes' instead."
   (interactive)
   (color-theme-sanityinc-solarized-dark))
 
+(require-package 'warm-night-theme)
 
 (provide 'init-themes)

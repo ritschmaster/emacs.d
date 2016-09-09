@@ -1,44 +1,86 @@
-;;----------------------------------------------------------------------------
-;; rename file and buffer
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> r") 'rename-this-file-and-buffer)
+(require-package 'bind-map)
+(defvar emacs-d-default-map (make-sparse-keymap)
+  "Base keymap for all keys.")
+
+(bind-map emacs-d-default-map
+  :keys ("M-m"))
 
 ;;----------------------------------------------------------------------------
-;; comments
+;; Buffer specific commands - starting with "b"
 ;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> <f11>") 'comment-or-uncomment-region)
+(define-key emacs-d-default-map (kbd "b f") 'rename-this-file-and-buffer)
 
 ;;----------------------------------------------------------------------------
-;; compile
+;; Code specific commands - starting with "c"
 ;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> <f5>") 'recompile)
+(define-key emacs-d-default-map (kbd "c l")
+  'comment-or-uncomment-region)
+(define-key emacs-d-default-map (kbd "c C")
+  'compile)
+(define-key emacs-d-default-map (kbd "c r")
+  'recompile)
 
 ;;----------------------------------------------------------------------------
-;; gnus
+;; applications - starting with "a"
 ;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> G") 'gnus)
-(global-set-key (kbd "<f2> s") 'smtpmail-send-queued-mail)
+;;; gnus
+(define-key emacs-d-default-map (kbd "a g")
+  'gnus)
+(define-key emacs-d-default-map (kbd "a S")
+  'smtpmail-send-queued-mail)
 
-;;----------------------------------------------------------------------------
-;; w3m
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> w") 'w3m)
-(global-set-key (kbd "<f2> S") 'w3m-search)
-(global-set-key (kbd "<f2> U") 'w3m-goto-url)
+;;; w3m
+(define-key emacs-d-default-map (kbd "a b s") 'w3m)
+(define-key emacs-d-default-map (kbd "a b S") 'w3m-search)
+(define-key emacs-d-default-map (kbd "a b g") 'w3m-goto-url)
 (define-key w3m-mode-map (kbd "C-c C-u") 'w3m-browse-url-new-tab)
 (define-key w3m-mode-map (kbd "C-c C-y") 'w3m-yt-view)
 
+;;; EMMS
+(define-key emacs-d-default-map (kbd "a m o") 'emms)
+(define-key emacs-d-default-map (kbd "a m S") 'emms-start)
+(define-key emacs-d-default-map (kbd "a m s") 'emms-stop)
+(define-key emacs-d-default-map (kbd "a m P") 'emms-pause)
+(define-key emacs-d-default-map (kbd "a m p") 'emms-previous)
+(define-key emacs-d-default-map (kbd "a m n") 'emms-next)
+(define-key emacs-d-default-map (kbd "a m +") 'emms-volume-raise)
+(define-key emacs-d-default-map (kbd "a m -") 'emms-volume-raise)
+(define-key emacs-d-default-map (kbd "a m *")
+  (lambda ()
+    (interactive)
+    (emms-volume-change-by-fixed-amount 'emms-volume-raise)))
+(define-key emacs-d-default-map (kbd "a m _")
+  (lambda ()
+    (interactive)
+    (emms-volume-change-by-fixed-amount 'emms-volume-lower)))
+(define-key emacs-d-default-map (kbd "a m l") 'emms-add-playlist)
+(define-key emacs-d-default-map (kbd "a m f") 'emms-add-file)
+(define-key emacs-d-default-map (kbd "a m F") 'emms-add-find)
+(define-key emacs-d-default-map (kbd "a m <") 'emms-seek-backward)
+(define-key emacs-d-default-map (kbd "a m >") 'emms-seek-forward)
+(define-key emacs-d-default-map (kbd "a m h") 'emms-shuffle)
+(define-key emacs-d-default-map (kbd "a m c") 'emms-playlist-clear)
+
+;;; org mode
+(define-key emacs-d-default-map (kbd "a o a") 'org-agenda-list)
+(define-key emacs-d-default-map (kbd "a o o") 'org-agenda)
+(define-key emacs-d-default-map (kbd "a o t") 'org-todo-list)
+(define-key emacs-d-default-map (kbd "a o G") 'gtd)
+(define-key emacs-d-default-map (kbd "a o R") 'remember)
+(define-key emacs-d-default-map (kbd "a o N") 'notes)
+
 ;;----------------------------------------------------------------------------
-;; ispell
+;; spelling - starting with "s"
 ;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> c") 'ispell)
-(global-set-key (kbd "<f2> C") 'ispell-change-dictionary)
+(define-key emacs-d-default-map (kbd "s c") 'ispell)
+(define-key emacs-d-default-map (kbd "s d") 'ispell-change-dictionary)
 
 ;;----------------------------------------------------------------------------
 ;; c-mode & c++-mode
 ;;----------------------------------------------------------------------------
-(define-key c-mode-map (kbd "<f2> <f4>") 'ff-get-other-file)
-(define-key c++-mode-map (kbd "<f2> <f4>") 'ff-get-other-file)
+;; (define-key c-mode-map (kbd "m g a") 'ff-get-other-file)
+;; (define-key c++-mode-map (kbd "m g a") 'ff-get-other-file)
+(define-key emacs-d-default-map (kbd "m g a") 'ff-get-other-file)
 
 ;;----------------------------------------------------------------------------
 ;; ECB
@@ -54,64 +96,15 @@
 ;; (global-set-key (kbd "C-x C-;") 'ecb-show-ecb-windows)
 ;; (global-set-key (kbd "C-x C-'") 'ecb-hide-ecb-windows)
 
+;; ;;----------------------------------------------------------------------------
+;; ;; Sauron
+;; ;;----------------------------------------------------------------------------
+;; (global-set-key (kbd "C-c d s") 'sauron-toggle-hide-show)
 
-;;----------------------------------------------------------------------------
-;; EMMS
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "C-c s E") 'emms)
-(global-set-key (kbd "C-c s +") 'emms-volume-raise)
-(global-set-key (kbd "C-c s -") 'emms-volume-lower)
-(global-set-key (kbd "C-c s <left>")
-                (lambda ()
-                  (interactive)
-                  (emms-volume-change-by-fixed-amount 'emms-volume-lower)))
-(global-set-key (kbd "C-c s <right>")
-                (lambda ()
-                  (interactive)
-                  (emms-volume-change-by-fixed-amount 'emms-volume-raise)))
-(global-set-key (kbd "C-c s RET") 'emms-start)
-(global-set-key (kbd "C-c s s") 'emms-stop)
-(global-set-key (kbd "C-c s P") 'emms-pause)
-(global-set-key (kbd "C-c s n") 'emms-next)
-(global-set-key (kbd "C-c s p") 'emms-previous)
-(global-set-key (kbd "C-c s h") 'emms-shuffle)
-(global-set-key (kbd "C-c s l") 'emms-add-playlist)
-(global-set-key (kbd "C-c s L") 'emms-play-playlist)
-(global-set-key (kbd "C-c s u") 'emms-score-up-playing)
-(global-set-key (kbd "C-c s d") 'emms-score-down-playing)
-(global-set-key (kbd "C-c s r") 'emms-toggle-repeat-track)
-(global-set-key (kbd "C-c s R") 'emms-toggle-repeat-playlist)
-(global-set-key (kbd "C-c s f") 'emms-add-find)
-(global-set-key (kbd "C-c s c") 'emms-show)
-(global-set-key (kbd "C-c s >") 'emms-seek-forward)
-(global-set-key (kbd "C-c s <") 'emms-seek-backward)
-(global-set-key (kbd "C-c s k") 'soundklaus-tracks)
-
-
-;;----------------------------------------------------------------------------
-;; Sauron
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "C-c d s") 'sauron-toggle-hide-show)
-
-;;----------------------------------------------------------------------------
-;; org-mode
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f2> g") 'gtd)
-(global-set-key (kbd "<f2> t") 'remember)
-(global-set-key (kbd "<f2> n") 'notes)
-
-;;----------------------------------------------------------------------------
-;; windows
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "<f6>")
-                (lambda ()
-                  (interactive)
-                  (switch-to-buffer nil)))
-
-;;------------------------------------------------------------------------------
-;; dired
-;;------------------------------------------------------------------------------
-(define-key dired-mode-map (kbd "C-x m") 'dired-w3m-find-file)
+;; ;;------------------------------------------------------------------------------
+;; ;; dired
+;; ;;------------------------------------------------------------------------------
+;; (define-key dired-mode-map (kbd "C-x m") 'dired-w3m-find-file)
 
 ;;------------------------------------------------------------------------------
 ;; message-mode

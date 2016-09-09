@@ -196,7 +196,9 @@ you can also create an `~/.emacs.d/lisp/init-preload-local.el` file.
 If you plan to customize things more extensively, you should probably
 just fork the repo and hack away at the config to make it your own!
 
-For key bindings look at the `~/.emacs.d/lisp/init-keys.el`!
+For key bindings look at the `~/.emacs.d/lisp/init-keys.el`! It uses
+(Spacemacs)[https://github.com/syl20bnr/spacemacs] like key settings,
+which means custom keys start with <kbd>M-m</kbd>
 
 ## Similar configs
 
