@@ -17,6 +17,7 @@
   "M-m a o"    "org-mode"
   "M-m b"    "Buffer"
   "M-m c"    "Code"
+  "M-m g"    "Git"
   "M-m m"    "Major mode"
   "M-m s"    "Spellchecking")
 
@@ -45,8 +46,8 @@
   'smtpmail-send-queued-mail)
 
 ;;; w3m
-(define-key emacs-d-default-map (kbd "a b s") 'w3m)
-(define-key emacs-d-default-map (kbd "a b S") 'w3m-search)
+(define-key emacs-d-default-map (kbd "a b o") 'w3m)
+(define-key emacs-d-default-map (kbd "a b s") 'w3m-search)
 (define-key emacs-d-default-map (kbd "a b g") 'w3m-goto-url)
 (define-key w3m-mode-map (kbd "C-c C-u") 'w3m-browse-url-new-tab)
 (define-key w3m-mode-map (kbd "C-c C-y") 'w3m-yt-view)
@@ -96,6 +97,11 @@
 ;; (define-key c-mode-map (kbd "m g a") 'ff-get-other-file)
 ;; (define-key c++-mode-map (kbd "m g a") 'ff-get-other-file)
 (define-key emacs-d-default-map (kbd "m g a") 'ff-get-other-file)
+
+;;----------------------------------------------------------------------------
+;; Git
+;;----------------------------------------------------------------------------
+(define-key emacs-d-default-map (kbd "g s") 'magit-status)
 
 ;;----------------------------------------------------------------------------
 ;; ECB

@@ -36,8 +36,10 @@ Python, Javascript, PHP and a number of other languages.
  * A simple OfflineIMAP configuration (look at ~/.offlineimaprc and
    ~/.offineimap.py after make install)
  * Please set the pgg-default-keyserver-address variable!
- * Do not panic if you cannot send mails! Use
-   <kbd>F1</kbd>+<kbd>s</kbd> for it!
+ * Do not panic if mails are not sended automatically! Use <kbd>M-m a
+   S</kbd> for it!
+* Browser
+  * A full setup of emacs-w3m.
 * Chat
  * A simple ERC setup for using IRC
 * Organisation
@@ -52,6 +54,9 @@ Python, Javascript, PHP and a number of other languages.
 * Daemon setup
  * systemd user level daemon
  * sysvinit daemon shell script for every user
+* A keyboard setup similar
+  to [Spacemacs](https://github.com/syl20bnr/spacemacs). These means
+  keys defined by this configuration start with <kbd>M-m</kbd>.
 
 ## Requirements
 =======
@@ -63,10 +68,10 @@ above is required for an increasing number of key packages, including
 `magit` and `flycheck`, so to get full you should use the latest Emacs
 version available to you.
 
-Some Windows users might need to follow
-[these instructions](http://xn--9dbdkw.se/diary/how_to_enable_GnuTLS_for_Emacs_24_on_Windows/index.en.html)
-to get TLS (ie. SSL) support included in their Emacs.
->>>>>>> ba4a2cab093550d24e52cc2e081d4b21e1774ca0
+Some Windows users might need to
+follow
+[these instructions](http://xn--9dbdkw.se/diary/how_to_enable_GnuTLS_for_Emacs_24_on_Windows/index.en.html) to
+get TLS (ie. SSL) support included in their Emacs.
 
 ## Other requirements
 
@@ -209,17 +214,25 @@ You might also want to check out `emacs-starter-kit` and `prelude`.
 If you hit any problems, please first ensure that you are using the
 latest version of this code, and that you have updated your packages
 to the most recent available versions (see "Updates" above). If you
-still experience problems, go ahead and
-[file an issue on the github project](https://github.com/purcell/emacs.d).
+still experience problems, go ahead
+and
+[file an issue on the github project](https://github.com/ritschmaster/emacs.d).
 
--Steve Purcell
+- Richard Paul Bäck
+
+## Special thanks
+
+Special thanks to Steve Purcel. This config is a fork of
+his [Config]((https://github.com/purcell/emacs.d).
 
 <hr>
 
-[![](http://api.coderwall.com/purcell/endorsecount.png)](http://coderwall.com/purcell)
+[free-your-pc.com](http://www.free-your-pc.com/)
 
-[![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://uk.linkedin.com/in/stevepurcell)
+[![@RichardBaeck@gnusocial.de](https://gnusocial.de/theme/neo-gnu/mobilelogo.png)](https://gnusocial.de/RichardBaeck)
 
-[sanityinc.com](http://www.sanityinc.com/)
+[![@RichardBaeck](https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1267px-Twitter_bird_logo_2012.svg.png)](https://gnusocial.de/RichardBaeck)
 
-[@sanityinc](https://twitter.com/)
+
+
+
