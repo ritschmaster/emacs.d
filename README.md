@@ -229,9 +229,9 @@ his [Config]((https://github.com/purcell/emacs.d).
 
 [free-your-pc.com](http://www.free-your-pc.com/)
 
-[![@RichardBaeck@gnusocial.de](https://gnusocial.de/theme/neo-gnu/mobilelogo.png)](https://gnusocial.de/RichardBaeck)
+[![@RichardBaeck@gnusocial.de](https://gnusocial.de/theme/neo-gnu/mobilelogo.png =50x50)](https://gnusocial.de/RichardBaeck)
 
-[![@RichardBaeck](https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1267px-Twitter_bird_logo_2012.svg.png)](https://gnusocial.de/RichardBaeck)
+[![@RichardBaeck](https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1267px-Twitter_bird_logo_2012.svg.png =50x50)](https://twitter.com/RichardBaeck)
 
 
 
