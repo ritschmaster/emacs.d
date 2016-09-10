@@ -10,6 +10,20 @@
   (erc-tls))
 
 (require-package 'znc)
+(require 'znc)
+
+(add-hook
+ 'erc-before-connect
+ #'(lambda (&rest args)
+     (dolist (server znc-servers)
+       (let ((server-name (first server))
+             (server-port (second server)))
+         (dolist (login (fourth server))
+           (let ((user (second login)))
+             (setf (third login)
+                   (offlineimap-get-password server-name
+                                             (number-to-string server-port)
+                                             user))))))))
 
 (provide 'init-erc)
 ;;; init-erc ends here

@@ -13,6 +13,7 @@
 (which-key-add-key-based-replacements
   "M-m a"    "Applications"
   "M-m a b"    "Browser"
+  "M-m a i"    "IRC"
   "M-m a m"    "Music"
   "M-m a o"    "org-mode"
   "M-m b"    "Buffer"
@@ -47,10 +48,16 @@
 
 ;;; w3m
 (define-key emacs-d-default-map (kbd "a b o") 'w3m)
+(define-key emacs-d-default-map (kbd "a b f") 'w3m-find-file)
 (define-key emacs-d-default-map (kbd "a b s") 'w3m-search)
 (define-key emacs-d-default-map (kbd "a b g") 'w3m-goto-url)
 (define-key w3m-mode-map (kbd "C-c C-u") 'w3m-browse-url-new-tab)
 (define-key w3m-mode-map (kbd "C-c C-y") 'w3m-yt-view)
+
+;;; w3m
+(define-key emacs-d-default-map (kbd "a i e") 'erc)
+(define-key emacs-d-default-map (kbd "a i z") 'znc-erc)
+(define-key emacs-d-default-map (kbd "a i j") 'erc-join-channel)
 
 ;;; EMMS
 (define-key emacs-d-default-map (kbd "a m o") 'emms)
@@ -130,8 +137,8 @@
 ;;------------------------------------------------------------------------------
 ;; message-mode
 ;;------------------------------------------------------------------------------
-(add-hook 'message-mode-hook
-          (lambda ()
-            (local-set-key "C-c M-o" 'org-mime-htmlize)))
+;; (add-hook 'message-mode-hook
+;;           (lambda ()
+;;             (local-set-key "C-c M-o" 'org-mime-htmlize)))
 
 (provide 'init-keys)
