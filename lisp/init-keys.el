@@ -56,6 +56,7 @@
 
 ;;; w3m
 (define-key emacs-d-default-map (kbd "a i e") 'erc)
+(define-key emacs-d-default-map (kbd "a i t") 'erc-tls)
 (define-key emacs-d-default-map (kbd "a i z") 'znc-erc)
 (define-key emacs-d-default-map (kbd "a i j") 'erc-join-channel)
 
@@ -140,5 +141,13 @@
 ;; (add-hook 'message-mode-hook
 ;;           (lambda ()
 ;;             (local-set-key "C-c M-o" 'org-mime-htmlize)))
+
+;;------------------------------------------------------------------------------
+;; Other global keys
+;;------------------------------------------------------------------------------
+;; (when enable-exwm
+;;   (global-set-key (kbd "C-F1")
+;;                   #'(lambda ()
+;;                       (exwm-workspace-switch 0))))
 
 (provide 'init-keys)
