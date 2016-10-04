@@ -20,7 +20,9 @@
   "M-m c"    "Code"
   "M-m g"    "Git"
   "M-m m"    "Major mode"
-  "M-m s"    "Spellchecking")
+  "M-m s"    "Spellchecking"
+  "M-m w"    "EXWM"
+  "M-m w m"  "Move window to")
 
 ;;----------------------------------------------------------------------------
 ;; Buffer specific commands - starting with "b"
@@ -105,6 +107,8 @@
 ;; (define-key c-mode-map (kbd "m g a") 'ff-get-other-file)
 ;; (define-key c++-mode-map (kbd "m g a") 'ff-get-other-file)
 (define-key emacs-d-default-map (kbd "m g a") 'ff-get-other-file)
+(define-key emacs-d-default-map (kbd "m r") 'srefactor-refactor-at-point)
+;; (define-key emacs-d-default-map (kbd "m d") 'gud-gdb)
 
 ;;----------------------------------------------------------------------------
 ;; Git
@@ -145,9 +149,62 @@
 ;;------------------------------------------------------------------------------
 ;; Other global keys
 ;;------------------------------------------------------------------------------
-;; (when enable-exwm
-;;   (global-set-key (kbd "C-F1")
-;;                   #'(lambda ()
-;;                       (exwm-workspace-switch 0))))
+;; (when use-exwm-as-wm
+;;   (define-key emacs-d-default-map (kmbd "w 1")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 0)))
+;;   (define-key emacs-d-default-map (kbd "w 2")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 1)))
+;;   (define-key emacs-d-default-map (kbd "w 3")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 2)))
+;;   (define-key emacs-d-default-map (kbd "w 4")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 3)))
+;;   (define-key emacs-d-default-map (kbd "w 5")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 4)))
+;;   (define-key emacs-d-default-map (kbd "w 6")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 5)))
+;;   (define-key emacs-d-default-map (kbd "w 7")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 6)))
+;;   (define-key emacs-d-default-map (kbd "w 8")
+;;     #'(lambda ()
+;;         (exwm-workspace-switch 7)))
+
+;;   ;; (define-key emacs-d-default-map (kmbd "w m 1")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 0)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 2")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 1)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 3")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 2)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 4")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 3)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 5")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 4)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 6")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 5)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 7")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 6)))
+;;   ;; (define-key emacs-d-default-map (kbd "w m 8")
+;;   ;;   #'(lambda ()
+;;   ;;       (exwm-workspace-move-window 7)))
+
+;;   (define-key emacs-d-default-map (kbd "w h")
+;;     'exwm-floating-hide)
+;;   (define-key emacs-d-default-map (kbd "w f")
+;;     'exwm-layout-set-fullscreen)
+;;   (define-key emacs-d-default-map (kbd "w t")
+;;     'exwm-floating-toggle-floating))
 
 (provide 'init-keys)

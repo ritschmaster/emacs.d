@@ -72,5 +72,6 @@ ignored: use `custom-enabled-themes' instead."
   (color-theme-sanityinc-solarized-dark))
 
 (require-package 'warm-night-theme)
+(require-package 'spacemacs-theme)
 
 (provide 'init-themes)

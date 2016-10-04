@@ -13,6 +13,19 @@
 ;; semantic autocomplete integration
 (add-to-list 'ac-sources 'ac-source-semantic)
 
+(global-ede-mode 1)
+(global-semantic-idle-completions-mode t)
+(global-semantic-decoration-mode t)
+(global-semantic-highlight-func-mode t)
+(global-semantic-show-unmatched-syntax-mode t)
+
+
+;;------------------------------------------------------------------------------
+;; Semantic refactor:
+;;------------------------------------------------------------------------------
+(require-package 'srefactor)
+(require 'srefactor)
+(semantic-mode 1)
 
 ;;------------------------------------------------------------------------------
 ;;------------------------------------------------------------------------------
@@ -31,15 +44,15 @@
 ;; (add-to-list 'auto-mode-alist
 ;;              '(c-semantic-gtk3-include-directory . c-mode))
 (semantic-add-system-include c-semantic-gtk3-include-directory 'c-mode)
-;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file
-;;              (concat
-;;               c-semantic-gtk3-include-directory
-;;               "/gtk.h"))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file
+             (concat
+              c-semantic-gtk3-include-directory
+              "/gtk.h"))
 
 ;;------------------------------------------------------------------------------
 ;; Use SDL2 Headers:
 ;;------------------------------------------------------------------------------
-(defcustom c-semantic-sdl2-include-directory "/usr/include/sdl2"
+(defcustom c-semantic-sdl2-include-directory "/usr/include/SDL2"
   "The path to the SDL2 include directory. It should NOT be terminated with a slash."
   :type '(string)
   :group 'init-cc)
@@ -47,10 +60,10 @@
 ;;              '(c-semantic-gtk3-include-directory . c-mode))
 (semantic-add-system-include c-semantic-sdl2-include-directory 'c-mode)
 (semantic-add-system-include c-semantic-sdl2-include-directory 'c++-mode)
-;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file
-;;              (concat
-;;               c-semantic-gtk3-include-directory
-;;               "/gtk.h"))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file
+             (concat
+              c-semantic-gtk3-include-directory
+              "/SDL.h"))
 
 ;;------------------------------------------------------------------------------
 ;;------------------------------------------------------------------------------
@@ -62,13 +75,13 @@
 ;;------------------------------------------------------------------------------
 ;; Use Qt Headers:
 ;;------------------------------------------------------------------------------
-(defcustom cc-semantic-qt-include-directory "/usr/include/Qt"
-  "The path to the Qt include directory. It should NOT be terminated with a slash."
-  :type '(string)
-  :group 'init-cc)
+;; (defcustom cc-semantic-qt-include-directory "/usr/include/Qt"
+;;   "The path to the Qt include directory. It should NOT be terminated with a slash."
+;;   :type '(string)
+;;   :group 'init-cc)
 ;; (add-to-list 'auto-mode-alist
 ;;              '(cc-semantic-qt-include-directory . c++-mode))
-(semantic-add-system-include cc-semantic-qt-include-directory 'c++-mode)
+;; (semantic-add-system-include cc-semantic-qt-include-directory 'c++-mode)
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat cc-semantic-qt-include-directory "/qconfig.h"))
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat cc-semantic-qt-include-directory "/qconfig-dist.h"))
 
